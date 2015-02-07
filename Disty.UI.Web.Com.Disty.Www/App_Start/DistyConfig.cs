@@ -73,7 +73,7 @@ namespace Disty.UI.Web.Com.Disty.Www
                 var log = LogManager.GetLogger(Common.Contract.Constants.Global.DefaultLogName);
                 log.Error(exception);
 
-                throw new LoggedException("Error in ParabolaConfiguration startup.", exception);
+                throw new LoggedException("Error in DistyConfiguration startup.", exception);
             }
         }
 
@@ -149,7 +149,7 @@ namespace Disty.UI.Web.Com.Disty.Www
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "Parabola.Web.Site.Www.Controllers" }
+                namespaces: new[] { "Disty.UI.Web.Com.Disty.Www.Controllers" }
             );
         }
 
