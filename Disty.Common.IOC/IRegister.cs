@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Contracts;
 using Autofac;
+using DiagnosticsContract = System.Diagnostics.Contracts.Contract;
 
 namespace Disty.Common.IOC
 {
@@ -14,7 +15,7 @@ namespace Disty.Common.IOC
     {
         public void Register(ContainerBuilder containerBuilder)
         {
-            Contract.Requires(containerBuilder != null);
+            DiagnosticsContract.Requires(containerBuilder != null);
         }
     }
 }
