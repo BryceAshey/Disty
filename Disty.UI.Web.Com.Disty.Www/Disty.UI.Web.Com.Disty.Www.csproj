@@ -114,10 +114,11 @@
     <Content Include="assets\css\dashboard.css" />
     <Content Include="assets\js\disty.config.js" />
     <Content Include="assets\js\disty.js" />
+    <Content Include="assets\js\lib\underscore\underscore-1.7.0.js" />
     <Content Include="assets\js\modules\common\common.modules.js" />
-    <Content Include="assets\js\script.js" />
+    <Content Include="assets\js\lib\script.js" />
     <Content Include="Global.asax" />
-    <Content Include="assets\js\docs.min.js" />
+    <Content Include="assets\js\lib\docs.min.js" />
     <Content Include="assets\js\ie10-viewport-bug-workaround.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -135,6 +136,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="assets\js\lib\underscore\underscore-min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

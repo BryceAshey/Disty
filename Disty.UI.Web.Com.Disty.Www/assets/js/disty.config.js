@@ -47,23 +47,25 @@
 
         $script.get('//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', function () {
             $script.get('//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', function () {
-                $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js', function () {
-                    $script([
-                        '/assets/js/docs.min.js',
-                        '/assets/js/ie10-viewport-bug-workaround.js',
-                    ], 'distyLibs');
+                $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.js', function () {
+                    $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.js', function() {
+                        $script([
+                            '/assets/js/lib/underscore/underscore-1.7.0.js',
+                            '/assets/js/lib/docs.min.js',
+                            '/assets/js/ie10-viewport-bug-workaround.js',
+                        ], 'distyLibs');
+                    });
                 });
             });
         });
 
         $script.ready('distyLibs', function () {
             $script([
-                '/assets/js/modules/common/common.modules'
+                'modules/common/common.modules'
             ], 'distyCore');
         });
 
         $script.ready('distyCore', function () {
-            console.log('got here2');
             $script([
                 'disty'
             ], 'disty');
@@ -74,7 +76,6 @@
 
             angular.element(document).ready(function () {
                 angular.bootstrap(document, _.union(['disty'], modules));
-                console.log('got here');
             });
         });
     }

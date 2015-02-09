@@ -2,7 +2,7 @@
     'use strict';
      
     var _modules = [
-        
+        'ngRoute'
     ];
 
     modules = _.union(distyConfig.modules, _modules);

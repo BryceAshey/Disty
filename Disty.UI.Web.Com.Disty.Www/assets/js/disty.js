@@ -25,7 +25,7 @@ distyConfig.modules = (distyConfig && distyConfig.modules) ? distyConfig.modules
             //$httpProvider.interceptors.push('disty.common.routing.defaultHeaders');
         }
 
-        parabola.config(['$httpProvider', Config]);
+        disty.config(['$httpProvider', Config]);
 
     })();
 
