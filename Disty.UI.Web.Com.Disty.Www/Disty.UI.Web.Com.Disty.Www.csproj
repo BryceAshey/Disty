@@ -120,7 +120,9 @@
     <Content Include="Global.asax" />
     <Content Include="assets\js\lib\docs.min.js" />
     <Content Include="assets\js\ie10-viewport-bug-workaround.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\DistyConfig.cs" />
@@ -159,12 +161,16 @@
       <Name>Disty.Common.IOC</Name>
     </ProjectReference>
     <ProjectReference Include="..\Disty.Common.Log\Disty.Common.Log.csproj">
-      <Project>{c3074d7b-6a85-4b5a-8b0a-555ea422737f}</Project>
+      <Project>{5a6bca2b-1a8d-4f47-a0d4-28824341d7f6}</Project>
       <Name>Disty.Common.Log</Name>
     </ProjectReference>
     <ProjectReference Include="..\Disty.Common.Net\Disty.Common.Net.csproj">
       <Project>{bc26f6c6-15e2-4c82-b69c-7a40de978305}</Project>
       <Name>Disty.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Common\Disty.Common.csproj">
+      <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
+      <Name>Disty.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

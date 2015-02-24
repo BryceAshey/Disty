@@ -45,6 +45,9 @@
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -72,10 +75,6 @@
     <ProjectReference Include="..\Disty.Common.IOC\Disty.Common.IOC.csproj">
       <Project>{6c668d9c-fc05-417b-a3df-a1036d71cad9}</Project>
       <Name>Disty.Common.IOC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Disty.Common.Log\Disty.Common.Log.csproj">
-      <Project>{c3074d7b-6a85-4b5a-8b0a-555ea422737f}</Project>
-      <Name>Disty.Common.Log</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
