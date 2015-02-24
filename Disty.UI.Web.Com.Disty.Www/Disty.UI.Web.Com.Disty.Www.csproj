@@ -112,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\dashboard.css" />
+    <Content Include="assets\html\availableLists.html" />
+    <Content Include="assets\html\listGrid.html" />
     <Content Include="assets\js\disty.config.js" />
     <Content Include="assets\js\disty.js" />
     <Content Include="assets\js\lib\underscore\underscore-1.7.0.js" />
