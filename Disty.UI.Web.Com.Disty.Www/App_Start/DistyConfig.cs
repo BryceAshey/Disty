@@ -177,19 +177,6 @@ namespace Disty.UI.Web.Com.Disty.Www
         private static void ConfigureWebApiRouting(HttpConfiguration httpConfiguration)
         {
             httpConfiguration.MapHttpAttributeRoutes();
-            var routes = RouteTable.Routes;
-
-            routes.MapHttpRoute(
-                name: "DefaultApi2",
-                routeTemplate: "api/{controller}/{action}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-            routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
         }
 
         private static void ConfigureWebApiSerialization(HttpConfiguration httpConfiguration)

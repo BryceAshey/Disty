@@ -172,6 +172,18 @@
       <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
       <Name>Disty.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Disty.Service.Endpoint.Http\Disty.Service.Endpoint.Http.csproj">
+      <Project>{3535b4b5-32e8-43df-9c7c-b3e011879c38}</Project>
+      <Name>Disty.Service.Endpoint.Http</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Service.Interfaces\Disty.Service.Interfaces.csproj">
+      <Project>{79989dd7-da02-4eb0-84ba-4e0eea84de10}</Project>
+      <Name>Disty.Service.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Service\Disty.Service.csproj">
+      <Project>{b6a0378b-708b-4ceb-837a-9167e9805f18}</Project>
+      <Name>Disty.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BC26F6C6-15E2-4C82-B69C-7A40DE978305}</ProjectGuid>
+    <ProjectGuid>{B6A0378B-708B-4CEB-837A-9167E9805F18}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Disty.Common.Net</RootNamespace>
-    <AssemblyName>Disty.Common.Net</AssemblyName>
+    <RootNamespace>Disty.Service</RootNamespace>
+    <AssemblyName>Disty.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,33 +33,17 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Extras.DynamicProxy2">
-      <HintPath>..\packages\Autofac.Extras.DynamicProxy2.3.0.4\lib\net40\Autofac.Extras.DynamicProxy2.dll</HintPath>
-    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,13 +51,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Http\Formatting\JsonNetFormatter.cs" />
+    <Compile Include="DistributionListService.cs" />
+    <Compile Include="IocRegistrations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Disty.Common.Contract\Disty.Common.Contract.csproj">
+      <Project>{71ee7740-05b2-4437-b31a-cff07833c39f}</Project>
+      <Name>Disty.Common.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Disty.Common.IOC\Disty.Common.IOC.csproj">
       <Project>{6c668d9c-fc05-417b-a3df-a1036d71cad9}</Project>
       <Name>Disty.Common.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Common.Log\Disty.Common.Log.csproj">
+      <Project>{5a6bca2b-1a8d-4f47-a0d4-28824341d7f6}</Project>
+      <Name>Disty.Common.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Common.Net\Disty.Common.Net.csproj">
+      <Project>{bc26f6c6-15e2-4c82-b69c-7a40de978305}</Project>
+      <Name>Disty.Common.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Common\Disty.Common.csproj">
+      <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
+      <Name>Disty.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Service.Interfaces\Disty.Service.Interfaces.csproj">
+      <Project>{79989dd7-da02-4eb0-84ba-4e0eea84de10}</Project>
+      <Name>Disty.Service.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
