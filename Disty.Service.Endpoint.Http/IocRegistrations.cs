@@ -13,6 +13,7 @@ namespace Disty.Service.Endpoint.Http
         public void Register(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<DistributionListController>().As<IDistributionListController>();
+            containerBuilder.RegisterAssemblyTypes(typeof(Disty.Service.Endpoint.Http.IocRegistrations).Assembly);
         }
     }
 }

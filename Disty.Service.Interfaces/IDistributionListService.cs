@@ -9,6 +9,7 @@ namespace Disty.Service.Interfaces
 {
     public interface IDistributionListService
     {
+        List<DistributionList> Get();
 
         DistributionList Get(Guid id);
 

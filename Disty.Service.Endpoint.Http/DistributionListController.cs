@@ -13,6 +13,8 @@ namespace Disty.Service.Endpoint.Http
     public interface IDistributionListController
     {
 
+        Task<IHttpActionResult> Get();
+
         Task<IHttpActionResult> Get(Guid id);
 
     }
@@ -25,6 +27,19 @@ namespace Disty.Service.Endpoint.Http
         public DistributionListController(IDistributionListService distributionListService)
         {
             _distributionListService = distributionListService;
+        }
+
+        [Route("")]
+        [ResponseType(typeof(List<DistributionList>))]
+        public async Task<IHttpActionResult> Get()
+        {
+            var list = await Task.Run<List<DistributionList>>(() => _distributionListService.Get());
+            if (list == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(list);
         }
 
         // {AE861F4D-52D7-4899-833A-207F23FFE03B}
