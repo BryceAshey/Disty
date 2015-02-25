@@ -112,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\dashboard.css" />
-    <Content Include="assets\html\lists\availableLists.html" />
     <Content Include="assets\html\home\index.html" />
     <Content Include="assets\html\lists\listGrid.html" />
     <Content Include="assets\js\disty.config.js" />
