@@ -112,13 +112,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\dashboard.css" />
-    <Content Include="assets\html\availableLists.html" />
-    <Content Include="assets\html\listGrid.html" />
+    <Content Include="assets\html\lists\availableLists.html" />
+    <Content Include="assets\html\home\index.html" />
+    <Content Include="assets\html\lists\listGrid.html" />
     <Content Include="assets\js\disty.config.js" />
     <Content Include="assets\js\disty.js" />
+    <Content Include="assets\js\lib\ui-router\angular-ui-router.min.js" />
     <Content Include="assets\js\lib\underscore\underscore-1.7.0.js" />
     <Content Include="assets\js\modules\common\common.modules.js" />
     <Content Include="assets\js\lib\script.js" />
+    <Content Include="assets\js\modules\home\controllers\disty.home.controller.js" />
+    <Content Include="assets\js\modules\home\home.modules.js" />
+    <Content Include="assets\js\modules\lists\controllers\disty.lists.controller.js" />
+    <Content Include="assets\js\modules\lists\lists.modules.js" />
     <Content Include="Global.asax" />
     <Content Include="assets\js\lib\docs.min.js" />
     <Content Include="assets\js\ie10-viewport-bug-workaround.js" />
@@ -141,6 +147,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="assets\js\lib\underscore\underscore-min.map" />
+    <Content Include="assets\js\modules\lists\directives\disty.lists.directives.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

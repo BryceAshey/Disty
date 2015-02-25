@@ -18,28 +18,24 @@
             load();
             return this;
         },
-        setRoutes: function ($routeProvider) {
+        setRoutes: function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/');
 
-            var routes = {
-                section: {
-                    addRoutes: function (routeProvider) {
-                        routeProvider
-                          .when('/:sectionId/classhome', { action: 'section.segment.classhome' })
-                          .when('/:sectionId/welcome', { action: 'section.segment.welcome' })
-                          .when('/:sectionId/segment/:segmentId', { action: 'section.segment.home' })
-                          .when('/:sectionId/generalForum', { action: 'section.segment.generalForum' })
-                          .when('/:sectionId/segment/:segmentId/:activityType/:activityId', { action: 'section.segment.activity' })
-                          .when('/:sectionId/student/gradebook', { action: 'section.segment.studentgradebook' })
-                          .when('/:sectionId/gradebook', { action: 'section.segment.gradebook' })
-                          .when('/:sectionId/gradebook/segment/:segmentId/discussion/:activityId', { action: 'section.segment.discussiongradebook' })
-                          .when('/:sectionId/gradebook/segment/:segmentId/discussion/:activityId/user/:userId', { action: 'section.segment.discussiongradebook' })
-                          .when('/:sectionId/gradebook/segment/:segmentId/:activityType/:activityId', { action: 'section.segment.activitygradebook' })
-                          .when('/:sectionId/gradebook/segment/:segmentId/:activityType/:activityId/user/:userId', { action: 'section.segment.activitygradebook' })
-                          .otherwise({ action: '/' });
-                    }
-                }
-            };
+            $stateProvider
+                .state('home', {
+                    url: '/',
+                    templateUrl: '/assets/html/home/index.html',
+                    controller: 'home.controller'
+                })
 
+            //$routeProvider
+            //    .when('/', {
+            //        templateUrl: '/assets/html/home/index.html',
+            //        controller: 'home.controller'
+            //    })
+            //    .otherwise({
+            //        redirectTo: '/'
+            //    });
         }
     };
 
@@ -48,20 +44,24 @@
         $script.get('//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js', function () {
             $script.get('//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', function () {
                 $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.js', function () {
-                    $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.js', function() {
-                        $script([
-                            '/assets/js/lib/underscore/underscore-1.7.0.js',
-                            '/assets/js/lib/docs.min.js',
-                            '/assets/js/ie10-viewport-bug-workaround.js',
-                        ], 'distyLibs');
-                    });
+                    $script([
+                        '/assets/js/lib/ui-router/angular-ui-router.min.js',
+                        '/assets/js/lib/underscore/underscore-1.7.0.js',
+                        '/assets/js/lib/docs.min.js',
+                        '/assets/js/ie10-viewport-bug-workaround.js',
+                    ], 'distyLibs');                    
                 });
             });
         });
 
         $script.ready('distyLibs', function () {
             $script([
-                'modules/common/common.modules'
+                'modules/common/common.modules',
+                'modules/home/controllers/disty.home.controller',
+                'modules/home/home.modules',                
+                'modules/lists/controllers/disty.lists.controller',
+                'modules/lists/directives/disty.lists.directives',
+                'modules/lists/lists.modules',                
             ], 'distyCore');
         });
 
@@ -72,10 +72,10 @@
         });
 
         $script.ready('disty', function () {
-            distyConfig.modules = modules;
+            distyConfig.modules = _.union(['disty'], modules);
 
             angular.element(document).ready(function () {
-                angular.bootstrap(document, _.union(['disty'], modules));
+                angular.bootstrap(document, distyConfig.modules);
             });
         });
     }

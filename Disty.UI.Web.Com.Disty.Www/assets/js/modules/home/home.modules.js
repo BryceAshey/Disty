@@ -2,8 +2,7 @@
     'use strict';
 
     var _modules = [
-        'disty.lists.controller',
-        'disty.lists.directives'
+        'disty.home.controller'
     ];
 
     modules = _.union(distyConfig.modules, _modules);

@@ -9,24 +9,24 @@ distyConfig.modules = (distyConfig && distyConfig.modules) ? distyConfig.modules
 
     (function () {
 
-        function Config($routeProvider) {
-            distyConfig.setRoutes($routeProvider);
+        function Config($stateProvider, $urlRouterProvider) {
+            distyConfig.setRoutes($stateProvider, $urlRouterProvider);
         }
 
-        disty.config(['$routeProvider', Config]);
+        disty.config(['$stateProvider', '$urlRouterProvider', Config]);
 
     })();
 
-    (function () {
+    //(function () {
 
-        function Config($httpProvider) {
-            //$httpProvider.interceptors.push('disty.httpErrorInterceptor');
-            //$httpProvider.interceptors.push('loggingHttpInterceptor');
-            //$httpProvider.interceptors.push('disty.common.routing.defaultHeaders');
-        }
+    //    function Config($httpProvider) {
+    //        //$httpProvider.interceptors.push('disty.httpErrorInterceptor');
+    //        //$httpProvider.interceptors.push('loggingHttpInterceptor');
+    //        //$httpProvider.interceptors.push('disty.common.routing.defaultHeaders');
+    //    }
 
-        disty.config(['$httpProvider', Config]);
+    //    disty.config(['$httpProvider', Config]);
 
-    })();
+    //})();
 
 })(angular);
