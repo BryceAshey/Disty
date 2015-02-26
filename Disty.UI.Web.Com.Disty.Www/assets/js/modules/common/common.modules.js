@@ -2,7 +2,9 @@
     'use strict';
      
     var _modules = [
-        'ui.router'
+        'ngResource',
+        'ui.router',
+        'disty.common.api.services'
     ];
 
     modules = _.union(distyConfig.modules, _modules);

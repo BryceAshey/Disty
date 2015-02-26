@@ -16,9 +16,9 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -120,10 +120,13 @@
     <Content Include="assets\js\lib\underscore\underscore-1.7.0.js" />
     <Content Include="assets\js\modules\common\common.modules.js" />
     <Content Include="assets\js\lib\script.js" />
+    <Content Include="assets\js\modules\common\services\disty.common.api.services.js" />
+    <Content Include="assets\js\disty.resources.js" />
     <Content Include="assets\js\modules\home\controllers\disty.home.controller.js" />
     <Content Include="assets\js\modules\home\home.modules.js" />
     <Content Include="assets\js\modules\lists\controllers\disty.lists.controller.js" />
     <Content Include="assets\js\modules\lists\lists.modules.js" />
+    <Content Include="assets\js\modules\lists\services\disty.lists.services.js" />
     <Content Include="Global.asax" />
     <Content Include="assets\js\lib\docs.min.js" />
     <Content Include="assets\js\ie10-viewport-bug-workaround.js" />
