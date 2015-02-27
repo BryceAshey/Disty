@@ -3,19 +3,32 @@
     'use strict';
 
     var module = $ng.module('disty.home.controller', [
-
+        'ngDialog',
+        'disty.common.lib.services',        
+        'disty.lists.controller'
     ]);
 
     //home.controller 
     (function () {
 
-        function Controller($scope, requestContext, $route, $routeParams, $loadingService, $timezoneService, $compose) {
+        function Controller($scope, $ngDialog) {
             var $this = this;
             //Make services and models available to object
             this.$scope = $scope;
+            this.$ngDialog = $ngDialog;
 
             // TODO Add code here
 
+            $scope.addList = function () {
+                $ngDialog.open({
+                    template: '/assets/html/lists/addList.html',
+                    controller: 'addList.controller'
+                });
+            }
+
+            $scope.deleteList = function () {
+                alert('Delete List');
+            }
 
             return this;
 
@@ -26,8 +39,9 @@
         };
 
         module.controller('home.controller',
-            ['$scope', Controller]);
+            ['$scope', 'ngDialog', Controller]);
 
     })();
+
 
 })(angular);

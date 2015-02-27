@@ -15,8 +15,9 @@ namespace Disty.Service.Endpoint.Http
 
         Task<IHttpActionResult> Get();
 
-        Task<IHttpActionResult> Get(Guid id);
+        Task<IHttpActionResult> Get(int id);
 
+        Task<IHttpActionResult> Post(DistributionList list);
     }
 
     [RoutePrefix("api/distributionList")]
@@ -43,9 +44,9 @@ namespace Disty.Service.Endpoint.Http
         }
 
         // {AE861F4D-52D7-4899-833A-207F23FFE03B}
-        [Route("{id:guid}")]
+        [Route("{id:int}")]
         [ResponseType(typeof(DistributionList))]
-        public async Task<IHttpActionResult> Get(Guid id)
+        public async Task<IHttpActionResult> Get(int id)
         {
             var list = await Task.Run<DistributionList>(() => _distributionListService.Get(id));
             if (list == null)
@@ -54,6 +55,18 @@ namespace Disty.Service.Endpoint.Http
             }
 
             return Ok(list);
+        }
+
+        [Route("")]
+        public async Task<IHttpActionResult> Post(DistributionList list)
+        {
+            list = await Task.Run<DistributionList>(() => _distributionListService.Save(list));
+            if (list == null)
+            {
+                return new System.Web.Http.Results.ExceptionResult(new Exception("Unable to create distribution list."), this);
+            }
+
+            return new System.Web.Http.Results.CreatedNegotiatedContentResult<DistributionList>(new Uri(""), null, this);
         }
     }
 }

@@ -3,7 +3,7 @@
 
     var baseUrl = distyConfig.baseUrl;
 
-    function ListResource($resource) {
+    function distributionListResource($resource) {
         var resource = $resource(baseUrl + "/distributionList/:listId",
             { listId: '@listId' },
             {
@@ -18,17 +18,18 @@
 
 
     var module = ng.module('disty.resources', ['ngResource'])
-        .factory('$distributionListService', ListResource);
+        .factory('$distributionListResource', distributionListResource);
+
 
     //$distyResourceService
     (function ($ng, $module) {
 
         $module.factory('$distyResourceService',
             [
-                '$distributionListService',
+                '$distributionListResource',
 
                 function (
-                    $distributionListService
+                    $distributionListResource
                 ) {
 
                     return {
@@ -47,7 +48,7 @@
                             }();
 
                             //TODO Figure out a better way to do this that doesn't require updating for new resources
-                            moduleMemoizer('$distributionListService', $distributionListService);
+                            moduleMemoizer('$distributionList', $distributionListResource);
 
                             return moduleMemoizer(resource);
                         }

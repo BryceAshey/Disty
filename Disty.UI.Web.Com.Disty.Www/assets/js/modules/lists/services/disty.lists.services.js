@@ -1,15 +1,15 @@
 ﻿/*global angular*/
-(function ($ng) {
+(function (ng) {
     'use strict';
 
-    var module = $ng.module('disty.lists.service', [
-
+    var module = ng.module('disty.lists.service', [
+        'disty.common.api.services'
     ]);
 
     //lists.service 
     (function ($ng, $module) {
 
-        function Service($q) {
+        function Service($q, $distyConfig) {
             var $this = this;
             //$this.$user = $memberService.getUserClaims();
 
@@ -37,11 +37,11 @@
                     return deferred.promise;
                 },
 
-
+                // Add other methods here...
             };
         }
 
-        $module.factory('$distributionListService', ['$q', Service]);
+        $module.factory('$distributionListService', ['$q', '$distyConfig', Service]);
 
     })(ng, module);
 

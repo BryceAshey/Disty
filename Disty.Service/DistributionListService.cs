@@ -23,7 +23,7 @@ namespace Disty.Service
             var lists = new List<DistributionList>(){
                 new DistributionList()
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Creator = "bashey",
                     Name = "Test List",
                     Owner = "bashey"
@@ -35,7 +35,7 @@ namespace Disty.Service
             return lists;
         }
 
-        public DistributionList Get(Guid id)
+        public DistributionList Get(int id)
         {
             return new DistributionList()
             {
@@ -44,6 +44,14 @@ namespace Disty.Service
                 Name = "Test List",
                 Owner = "bashey"
             };
+        }
+
+        public DistributionList Save(DistributionList list)
+        {
+            if (list.Id == 0)
+                list.Id = 1;
+
+            return list;
         }
 
     }

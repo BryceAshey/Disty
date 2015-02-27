@@ -11,7 +11,8 @@ namespace Disty.Service.Interfaces
     {
         List<DistributionList> Get();
 
-        DistributionList Get(Guid id);
+        DistributionList Get(int id);
 
+        DistributionList Save(DistributionList list);
     }
 }

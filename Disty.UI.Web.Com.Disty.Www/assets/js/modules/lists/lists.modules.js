@@ -3,7 +3,8 @@
 
     var _modules = [
         'disty.lists.controller',
-        'disty.lists.directives'
+        'disty.lists.directives',
+        'disty.lists.service'
     ];
 
     modules = _.union(distyConfig.modules, _modules);

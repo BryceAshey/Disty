@@ -104,3 +104,8 @@ body {
   border-radius: 50%;
 }body {
 }
+
+
+.mouse-pointer {
+    cursor: pointer
+}

@@ -2,6 +2,7 @@
     'use strict';
 
     var module = ng.module('disty.common.api.services', [
+        'disty.common.lib.services',
         'disty.resources',
 
     ]);
@@ -62,6 +63,8 @@
                                             //what does this mean?
                                             var ajax = currentResource[request.distyResource.methodToCall];
                                             try {
+
+                                                console.log(ajax);
 
                                                 if (request.methodParams) {
 
@@ -321,7 +324,6 @@
             }]);
 
     })(ng, module);
-
 
 
 })(angular);

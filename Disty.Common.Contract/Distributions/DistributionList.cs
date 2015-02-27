@@ -9,7 +9,13 @@ namespace Disty.Common.Contract.Distributions
     [Serializable]
     public class DistributionList
     {
-        public Guid Id { get; set; }
+        public DistributionList()
+        {
+            Id = 0;
+        }
+
+
+        public int Id { get; set; }
 
         public string Creator { get; set; }
 

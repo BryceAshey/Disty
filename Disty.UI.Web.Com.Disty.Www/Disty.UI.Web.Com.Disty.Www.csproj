@@ -112,16 +112,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\dashboard.css" />
+    <Content Include="assets\css\ngDialog-theme-default.min.css" />
+    <Content Include="assets\css\ngDialog.min.css" />
     <Content Include="assets\html\home\index.html" />
+    <Content Include="assets\html\lists\addList.html" />
     <Content Include="assets\html\lists\listGrid.html" />
     <Content Include="assets\js\disty.config.js" />
     <Content Include="assets\js\disty.js" />
+    <Content Include="assets\js\lib\ng-dialog\ngDialog.min.js" />
     <Content Include="assets\js\lib\ui-router\angular-ui-router.min.js" />
     <Content Include="assets\js\lib\underscore\underscore-1.7.0.js" />
     <Content Include="assets\js\modules\common\common.modules.js" />
     <Content Include="assets\js\lib\script.js" />
     <Content Include="assets\js\modules\common\services\disty.common.api.services.js" />
     <Content Include="assets\js\disty.resources.js" />
+    <Content Include="assets\js\modules\common\services\disty.common.lib.services.js" />
     <Content Include="assets\js\modules\home\controllers\disty.home.controller.js" />
     <Content Include="assets\js\modules\home\home.modules.js" />
     <Content Include="assets\js\modules\lists\controllers\disty.lists.controller.js" />
