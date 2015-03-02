@@ -43,15 +43,12 @@
             // TODO Add code here
 
             $scope.save = function () {
-                var promise = $distributionListService.create($scope.list.name);
-                promise.then(function (response) {
-                    console.log(response);
-                }, function (err) {
-                    console.log(err)
+
+                $distributionListService.create($scope.list.name, function (data) {
+                    console.log(data);
                 });
-
+                
                 $ngDialog.closeAll();
-
             }
 
             return this;

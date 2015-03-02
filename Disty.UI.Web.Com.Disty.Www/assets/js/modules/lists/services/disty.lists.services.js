@@ -9,39 +9,25 @@
     //lists.service 
     (function ($ng, $module) {
 
-        function Service($q, $distyConfig) {
+        function Service($compose, $distributionListResource) {
             var $this = this;
             //$this.$user = $memberService.getUserClaims();
 
             return {
 
-                create: function (name) {
-                    var deferred = $q.defer();
+                create: function (name, callback) {
 
-                    var promise = $distyConfig.requestFactory({
-                        methodParams: {
-                            name: name
-                        },
-                        distyResource: {
-                            methodToCall: 'create',
-                            resource: '$distributionList'
-                        }
-                    })();
-
-                    promise.then(function (response) {
-                        deferred.resolve({ data: response.data});
-                    }, function (err) {
-                        deferred.reject(err);
+                    var createResource = new $distributionListResource({ name: name });
+                    createResource.$create(function (object, responseHeaders) {
+                        $compose.sanitizeCallback(callback)($compose.apiLocation(responseHeaders));
                     });
 
-                    return deferred.promise;
                 },
-
                 // Add other methods here...
-            };
+            }
         }
 
-        $module.factory('$distributionListService', ['$q', '$distyConfig', Service]);
+        $module.factory('$distributionListService', ['$compose', '$distributionListResource', Service]);
 
     })(ng, module);
 

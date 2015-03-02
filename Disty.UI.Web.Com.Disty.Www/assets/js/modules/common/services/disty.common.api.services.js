@@ -7,323 +7,167 @@
 
     ]);
 
-    //---------------Resource / API service support---------------//
-    //$distyConfig
-    (function ($ng, $module) {
+    /**
+    * $compose
+    * functional composition utility library
+    * This is designed to be a library for common functional composition behaviors.
+    * @module $compose
+    */
+    (function () {
 
-        $module.factory('$distyConfig', [
-            '$rootScope',
-            '$http',
-            '$q',
-            '$window',
-            '$distyResourceService',
-            '$lodash',
-            function ($rootScope, $http, $q, $window, $distyResourceService, $lodash) {
+        function Service() {
 
-                $http.defaults.useXDomain = true;
+            /**
+            * Returns original callback if it is a function, otherwise it returns noop
+            * @memberof! $compose
+            * @funciton sanitizeCallback
+            * @param {function} callback
+            * @returns {function}
+            */
+            function sanitizeCallback(callback) {
+                return (typeof callback === 'function') ? callback : function () {
+                };
+            }
+
+            /**
+            * Safely performs apply on provided scope
+            * @memberof! $compose
+            * @function safeApply
+            * @param {object} $scope - scope provided from a controller
+            */
+            function safeApply($scope) {
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+            }
+
+            /**
+            * Executes a sanitized callback with passed parameters and context
+            * @memberof! $compose
+            * @function safeExecute
+            * @param {function} callback
+            * @param {array} params - parameters for function call
+            * @param {object} context - optional context, defaults to null if not defined
+            */
+            function safeExecute(callback, params, context) {
+                var sanitizedCallback = sanitizeCallback(callback),
+                    sanitizedContext = (context) ? context : null;
+
+                sanitizedCallback.apply(sanitizedContext, params);
+            }
+
+            /**
+            * Verifies a dot-delimited path is reachable in an object
+            * @memberof! $compose
+            * @function verifyObjectPath
+            * @param {object} rootObject - object to verify path against
+            * @param {string} objectPath - path to follow against root object
+            * @returns {boolean}
+            */
+            function verifyObjectPath(rootObject, objectPath) {
+                var currentObject = rootObject,
+                    currentToken = '',
+                    pathTokens = objectPath.split('.');
+
+                for (var key in pathTokens) {
+                    currentToken = pathTokens[key];
+
+                    currentObject = (currentObject[currentToken]) ? currentObject[currentToken] : null;
+
+                    if (!currentObject) {
+                        break;
+                    }
+                }
+
+                return (currentObject !== null) ? true : false;
+            }
+
+
+            /**
+            * Takes the intersection of two arrays using a comparator function
+            * @memberof! $compose
+            * @function intersect
+            * @param {array} array1
+            * @param {array} array2
+            * @param {function} comparator
+            * @returns {array}
+            */
+            function intersect(array1, array2, comparator) {
+                var finalArray = [],
+                    element1,
+                    element2;
+
+                for (var i = 0; i < array1.length; i++) {
+                    element1 = array1[i];
+                    for (var j = 0; j < array2.length; j++) {
+                        element2 = array2[j];
+                        if (comparator(element1, element2)) {
+                            finalArray.push(element1);
+                        }
+                    }
+                }
+
+                return finalArray;
+            }
+
+            /**
+            * Takes the intersection of two arrays using a comparator function
+            * @memberof! $compose
+            * @function difference
+            * @param {array} checkedArray
+            * @param {array} comparisonArray
+            * @param {function} comparator - returns true if match is found
+            * @returns {array}
+            */
+            function difference(checkedArray, comparisonArray, comparator) {
+                var finalArray = [],
+                    element1,
+                    element2,
+                    matched;
+
+                for (var i = 0; i < checkedArray.length; i++) {
+                    matched = false;
+                    element1 = checkedArray[i];
+                    for (var j = 0; j < comparisonArray.length; j++) {
+                        element2 = comparisonArray[j];
+                        if (comparator(element1, element2)) {
+                            matched = true;
+                            break;
+                        }
+                    }
+                    if (!matched) {
+                        finalArray.push(element1);
+                    }
+                }
+
+                return finalArray;
+            }
+
+            function apiLocation(headers) {
+                var location = '' + headers('Location');
+                var lastSlashIndex = location.lastIndexOf('/');
+                var id = location.substring(lastSlashIndex + 1, location.length);                    
 
                 return {
-                    requestFactory: function (options) {
-                        options || (options = {});
-
-                        //type, url, prms, headers, resource
-                        var baseUrl = distyConfig.baseUrl;
-
-                        var defaults = {
-                            type: 'GET',
-                            url: '',
-                            prms: '',
-                            timeout: 60000,
-                            headers: []
-                        };
-
-                        var request = _.extend({}, defaults, options);
-
-                        var requestPromise;
-
-                        var callStrategy = {
-                            pngresource: {
-                                doIt: function () {
-
-                                    var deferred = $q.defer();
-
-
-                                    //do something and either resolve or reject the promise
-                                    //then return the promise;
-                                    var currentResource = (function () {
-
-                                        return $distyResourceService.factory(request.distyResource.resource);
-
-                                    }());
-
-                                    if (typeof currentResource !== "undefined") {
-
-                                        if (ng.isFunction(currentResource[request.distyResource.methodToCall])) {
-
-                                            //what does this mean?
-                                            var ajax = currentResource[request.distyResource.methodToCall];
-                                            try {
-
-                                                console.log(ajax);
-
-                                                if (request.methodParams) {
-
-                                                    ajax(request.methodParams, function (data, responseHeaderFunc) {
-                                                        if (request.distyResource.methodToCall !== "query") {
-
-                                                            data.$ResponseHeaderFunc = function (name) {
-                                                                return responseHeaderFunc(name);
-                                                            };
-
-                                                            data.$IdFromLocationFunc = function () {
-                                                                var location = '' + responseHeaderFunc('Location');
-                                                                var lastSlashIndex = location.lastIndexOf('/');
-                                                                var id = location.substring(lastSlashIndex + 1, location.length);
-                                                                return id;
-                                                            };
-                                                        }
-
-                                                        deferred.resolve(data);
-
-                                                    }, function (err) {
-                                                        deferred.reject({ err: err });
-                                                    });
-
-                                                } else {
-                                                    ajax(function (data) {
-                                                        //do something with this data
-                                                        deferred.resolve({ data: data });
-                                                    }, function (err) {
-
-                                                        deferred.reject({ err: err });
-                                                    });
-                                                }
-                                            } catch (e) {
-                                                //potentially do something here then forward on the error
-                                                throw Error(e);
-                                            }
-                                        } else {
-
-                                            //instance method??
-                                            var distyEntity = new currentResource();
-                                            if (ng.isFunction(distyEntity[request.distyResource.methodToCall])) {
-
-                                                throw Error('Not yet implmented');
-                                            }
-
-                                        }
-
-                                    } else {
-
-                                        throw Error('currentResource is not a function ~ ' + request.distyResource.name);
-                                    }
-
-
-                                    return deferred.promise;
-
-                                }
-                            },
-                            goodOlAngular$http: {
-                                doIt: function () {
-
-                                    function encodeUriSegment(val) {
-                                        return encodeUriQuery(val, true).
-                                          replace(/%26/gi, '&').
-                                          replace(/%3D/gi, '=').
-                                          replace(/%2B/gi, '+');
-                                    }
-
-                                    function encodeUriQuery(val, pctEncodeSpaces) {
-                                        return encodeURIComponent(val).
-                                          replace(/%40/gi, '@').
-                                          replace(/%3A/gi, ':').
-                                          replace(/%24/g, '$').
-                                          replace(/%2C/gi, ',').
-                                          replace(/%20/g, (pctEncodeSpaces ? '%20' : '+'));
-                                    }
-
-                                    function extractParams(data, actionParams) {
-                                        var ids = {};
-                                        actionParams = extend({}, paramDefaults, actionParams);
-                                        $lodash.forEach(actionParams, function (value, key) {
-                                            ids[key] = value.charAt && value.charAt(0) == '@' ? getter(data, value.substr(1)) : value;
-                                        });
-                                        return ids;
-                                    }
-
-                                    function Route(template, defaults) {
-                                        this.template = template = template + '#';
-                                        this.defaults = defaults || {};
-                                        var urlParams = this.urlParams = {};
-
-                                        $lodash.forEach(template.split(/\W/), function (param) {
-                                            if (param && (new RegExp("(^|[^\\\\]):" + param + "\\W").test(template))) {
-                                                urlParams[param] = true;
-                                            }
-                                        });
-                                        this.template = template.replace(/\\:/g, ':');
-                                    }
-
-                                    Route.prototype = {
-                                        url: function (params) {
-
-
-                                            var self = this,
-                                                url = this.template,
-                                                val,
-                                                encodedVal;
-
-                                            params = params || {};
-
-                                            $lodash.forEach(this.urlParams, function (_, urlParam) {
-
-                                                val = params.hasOwnProperty(urlParam) ? params[urlParam] : self.defaults[urlParam];
-                                                if (angular.isDefined(val) && val !== null) {
-                                                    encodedVal = encodeUriSegment(val);
-                                                    url = url.replace(new RegExp(":" + urlParam + "(\\W)", "g"), encodedVal + "$1");
-                                                } else {
-                                                    url = url.replace(new RegExp("(\/?):" + urlParam + "(\\W)", "g"), function (match,
-                                                        leadingSlashes, tail) {
-                                                        if (tail.charAt(0) == '/') {
-                                                            return tail;
-                                                        } else {
-                                                            return leadingSlashes + tail;
-                                                        }
-                                                    });
-                                                }
-                                            });
-                                            url = url.replace(/\/?#$/, '');
-                                            //var query = [];
-                                            //$lodash.forEach(params, function (value, key) {
-                                            //    if (!self.urlParams[key]) {
-                                            //        query.push(encodeUriQuery(key) + '=' + encodeUriQuery(value));
-                                            //    }
-                                            //});
-                                            //query.sort();
-                                            //url = url.replace(/\/*$/, '');
-                                            return url; // + (query.length ? '?' + query.join('&') : '');
-                                        }
-
-                                    };
-
-
-                                    var deferred = $q.defer();
-                                    if (ng.isFunction($http[request.type.toLowerCase()])) {
-
-                                        var ajax = $http[request.type.toLowerCase()],
-                                            _url;
-
-                                        if (request.url.indexOf("/:") > 0) {
-                                            _url = new Route(request.url).url(request.methodParams);
-                                        } else {
-                                            _url = request.url;
-                                        }
-
-
-                                        try {
-
-                                            var promise;
-                                            switch (request.type.toLowerCase()) {
-
-                                                case 'post':
-                                                case 'put':
-                                                    promise = ajax(request.url, request.config.data, request.config);
-                                                    break;
-                                                default: //get, head, delete, jsonp
-                                                    promise = ajax(_url, null, { 'method': 'GET', 'url': _url });
-                                                    break;
-
-                                            }
-
-                                            promise.then(function (resp) {
-
-
-                                                if ($lodash.isObject(resp)) {
-                                                    resp.$ResponseHeaderFunc = function (name) {
-                                                        return resp.headers(name);
-                                                    };
-                                                    resp.$IdFromLocationFunc = function () {
-                                                        var location = '' + resp.headers('Location');
-                                                        var lastSlashIndex = location.lastIndexOf('/');
-                                                        var id = location.substring(lastSlashIndex + 1, location.length);
-                                                        return id;
-                                                    };
-                                                }
-
-                                                deferred.resolve(resp);
-                                            });
-
-
-                                            promise.error(function (data, status, headers, config) {
-                                                deferred.reject(status);
-                                            });
-
-                                        } catch (e) {
-
-                                            //potentially do something here then forward on the error
-                                            throw Error(e);
-                                        }
-
-                                        return deferred.promise;
-
-                                    } else {
-
-                                        throw Error();
-                                    }
-                                }
-                            },
-                            other: {
-                                doIt: function () {
-                                    throw Error('Not Implemented!');
-                                }
-                            }
-                        };
-
-                        requestPromise = (request.distyResource)
-                            ? callStrategy['pngresource']
-                            : callStrategy['goodOlAngular$http'];
-                        
-                        return function () {
-                            var deferred = $q.defer(),
-                                el = $ng.element('#ajaxMsg');
-
-                            try {
-                                var promise = requestPromise.doIt();
-                                promise.then(function (data) {
-                                    el.empty();
-                                    deferred.resolve(data);
-                                }, function (err) {
-                                    //el.html(err);
-                                    deferred.reject(err);
-                                });
-
-                            } catch (e) {
-                                el.html(e);
-                                //$postal.publish({
-                                //    channel: 'data.ajax',
-                                //    topic: 'data.ajax.error',
-                                //    data: { url: request.url, error: e }
-                                //});
-                                deferred.reject(e);
-
-                            } finally {
-
-                                //$postal.publish({
-                                //    channel: 'data.ajax',
-                                //    topic: 'data.ajax.call',
-                                //    data: { url: request.url }
-                                //});
-                            };
-
-                            return deferred.promise;
-
-                        };
-                    }
+                    id: id,
+                    location: location
                 };
+            }
 
-            }]);
+            return {
+                safeApply: safeApply,
+                safeExecute: safeExecute,
+                sanitizeCallback: sanitizeCallback,
+                verifyObjectPath: verifyObjectPath,
+                intersect: intersect,
+                difference: difference,
+                apiLocation: apiLocation
+            };
+        }
 
-    })(ng, module);
+        module.factory('$compose', [Service]);
+
+    })();
 
 
 })(angular);

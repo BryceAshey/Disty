@@ -1,10 +1,10 @@
 ﻿(function(ng) {
     'use strict';
 
-    var baseUrl = distyConfig.baseUrl;
+    var baseUrl = distyConfig.baseUrl + '/api';
 
     function distributionListResource($resource) {
-        var resource = $resource(baseUrl + "/distributionList/:listId",
+        var resource = $resource(baseUrl + '/distributionList/:listId',
             { listId: '@listId' },
             {
                 create: { method: 'POST' },
