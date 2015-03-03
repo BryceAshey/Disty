@@ -24,6 +24,7 @@ namespace Disty.Service.Endpoint.Http
         Task<IHttpActionResult> Post(DistributionList list);
     }
 
+    [AllowAnonymous]
     [RoutePrefix("api/distributionList")]
     public class DistributionListController : ApiController, IDistributionListController
     {
@@ -37,12 +38,12 @@ namespace Disty.Service.Endpoint.Http
         }
 
         [Route("")]
-        [ResponseType(typeof(List<DistributionList>))]
+        [ResponseType(typeof(IEnumerable<DistributionList>))]
         public async Task<IHttpActionResult> Get()
         {
             try
             {
-                var list = await Task.Run<List<DistributionList>>(() => _distributionListService.GetAsync());
+                var list = await Task.Run<IEnumerable<DistributionList>>(() => _distributionListService.GetAsync());
                 if (list == null)
                 {
                     return NotFound();

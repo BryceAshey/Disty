@@ -8,7 +8,7 @@ namespace Disty.Common.Data
 {
     public interface IDataClient<T> where T : class, new()
     {
-        Task<List<T>> GetAsync();
+        Task<IEnumerable<T>> GetAsync();
 
         Task<T> GetByIdAsync(string id);
 

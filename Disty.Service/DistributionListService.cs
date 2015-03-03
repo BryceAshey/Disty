@@ -21,7 +21,7 @@ namespace Disty.Service
             _dataClient = dataClient;
         }
 
-        public async Task<List<DistributionList>> GetAsync()
+        public async Task<IEnumerable<DistributionList>> GetAsync()
         {
             return await _dataClient.GetAsync();
         }

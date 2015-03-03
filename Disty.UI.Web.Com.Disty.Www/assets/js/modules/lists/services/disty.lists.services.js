@@ -11,9 +11,16 @@
 
         function Service($compose, $distributionListResource) {
             var $this = this;
-            //$this.$user = $memberService.getUserClaims();
 
             return {
+
+                getAll: function(callback) {
+                    var getResource = new $distributionListResource();
+                    getResource.$get(function (object, responseHeaders) {
+                        console.log('here', object)
+                        $compose.sanitizeCallback(callback)(object);
+                    });
+                },
 
                 create: function (name, callback) {
 

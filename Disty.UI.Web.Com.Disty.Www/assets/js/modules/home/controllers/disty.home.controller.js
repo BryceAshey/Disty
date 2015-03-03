@@ -11,7 +11,7 @@
     //home.controller 
     (function () {
 
-        function Controller($scope, $ngDialog) {
+        function Controller($scope, $ngDialog, $distributionListService) {
             var $this = this;
             //Make services and models available to object
             this.$scope = $scope;
@@ -30,6 +30,11 @@
                 alert('Delete List');
             }
 
+            $distributionListService.getAll(function (data) {
+                console.log('got here 0');
+                $scope.lists = data;
+            });
+
             return this;
 
         }
@@ -39,7 +44,7 @@
         };
 
         module.controller('home.controller',
-            ['$scope', 'ngDialog', Controller]);
+            ['$scope', 'ngDialog', '$distributionListService', Controller]);
 
     })();
 

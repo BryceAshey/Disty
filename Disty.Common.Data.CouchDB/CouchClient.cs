@@ -20,21 +20,27 @@ namespace Disty.Common.Data.CouchDB
             _couchStore = couchStore;
         }
 
-        public async Task<List<T>> GetAsync()
+        public async Task<IEnumerable<T>> GetAsync()
         {
             return await Task.Factory.StartNew(() =>
                 {
+                    T[] list = new T[0];
+
                     try
                     {
                         var query = new Query("optum", "all");
                         var queryInfo = _couchStore.QueryAsync<T>(query);
                         var result = queryInfo.Result;
-                        return new List<T>();
+                        
+                        if(result != null && result.Any())
+                            list = result.Select(q => q.Value).ToArray<T>();
+                        
+                        return list;
                     }
                     catch(Exception ex)
                     {
                         _log.Error("Error querying distribution lists.", ex);
-                        return new List<T>();
+                        return list;
                     }
                 });
         }

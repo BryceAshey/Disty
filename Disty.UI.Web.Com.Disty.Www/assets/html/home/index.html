@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar" >
             <div><i class="fa fa-plus mouse-pointer" ng-click="addList()"></i> <i class="fa fa-minus mouse-pointer" ng-click="deleteList()"></i></div>
-            <div distribution-lists-ul></div>
+            <ul class="nav nav-sidebar">
+                <li ng-repeat="list in lists" distribution-lists-ul="list"></li>
+            </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 

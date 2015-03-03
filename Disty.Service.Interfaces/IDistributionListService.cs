@@ -9,7 +9,7 @@ namespace Disty.Service.Interfaces
 {
     public interface IDistributionListService
     {
-        Task<List<DistributionList>> GetAsync();
+        Task<IEnumerable<DistributionList>> GetAsync();
 
         Task<DistributionList> GetAsync(string id);
 
