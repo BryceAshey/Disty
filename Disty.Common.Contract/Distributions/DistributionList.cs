@@ -11,11 +11,13 @@ namespace Disty.Common.Contract.Distributions
     {
         public DistributionList()
         {
-            Id = 0;
+            Creator = "bashey";
+            Owner = "bashey";
+            Dept = "eCAC";
+            Emails = new string[];
         }
 
-
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Creator { get; set; }
 
@@ -23,6 +25,9 @@ namespace Disty.Common.Contract.Distributions
 
         public string Owner { get; set; }
 
+        public string Dept { get; set; }
+
+        public string[] Emails { get; set; }
         
     }
 }

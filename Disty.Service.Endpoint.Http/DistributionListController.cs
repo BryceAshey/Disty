@@ -19,7 +19,7 @@ namespace Disty.Service.Endpoint.Http
 
         Task<IHttpActionResult> Get();
 
-        Task<IHttpActionResult> Get(int id);
+        Task<IHttpActionResult> Get(string id);
 
         Task<IHttpActionResult> Post(DistributionList list);
     }
@@ -42,7 +42,7 @@ namespace Disty.Service.Endpoint.Http
         {
             try
             {
-                var list = await Task.Run<List<DistributionList>>(() => _distributionListService.Get());
+                var list = await Task.Run<List<DistributionList>>(() => _distributionListService.GetAsync());
                 if (list == null)
                 {
                     return NotFound();
@@ -60,11 +60,11 @@ namespace Disty.Service.Endpoint.Http
         // {AE861F4D-52D7-4899-833A-207F23FFE03B}
         [Route("{id:int}", Name="GetDistributionList")]
         [ResponseType(typeof(DistributionList))]
-        public async Task<IHttpActionResult> Get(int id)
+        public async Task<IHttpActionResult> Get(string id)
         {
             try
             {
-                var list = await Task.Run<DistributionList>(() => _distributionListService.Get(id));
+                var list = await Task.Run<DistributionList>(() => _distributionListService.GetAsync(id));
                 if (list == null)
                 {
                     return NotFound();
@@ -84,7 +84,7 @@ namespace Disty.Service.Endpoint.Http
         {
             try
             {
-                list = await Task.Run<DistributionList>(() => _distributionListService.Save(list));
+                list = await Task.Run<DistributionList>(() => _distributionListService.SaveAsync(list));
                 if (list == null)
                 {
                     return InternalServerError(new Exception("Unable to create distribution list."));

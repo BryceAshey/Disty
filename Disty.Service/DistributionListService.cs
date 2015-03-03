@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Disty.Common.Contract.Distributions;
+using Disty.Common.Data;
 using Disty.Service.Interfaces;
 using log4net;
 
@@ -12,46 +13,31 @@ namespace Disty.Service
     public class DistributionListService : IDistributionListService
     {
         private ILog _log;
+        private IDataClient<DistributionList> _dataClient;
 
-        public DistributionListService(ILog log)
+        public DistributionListService(ILog log, IDataClient<DistributionList> dataClient)
         {
             _log = log;
+            _dataClient = dataClient;
         }
 
-        public List<DistributionList> Get()
+        public async Task<List<DistributionList>> GetAsync()
         {
-            var lists = new List<DistributionList>(){
-                new DistributionList()
-                {
-                    Id = 1,
-                    Creator = "bashey",
-                    Name = "Test List",
-                    Owner = "bashey"
-                }
-            };
-
-            //TODO Sort
-
-            return lists;
+            return await _dataClient.GetAsync();
         }
 
-        public DistributionList Get(int id)
+        public async Task<DistributionList> GetAsync(string id)
         {
-            return new DistributionList()
-            {
-                Id = id,
-                Creator = "bashey",
-                Name = "Test List",
-                Owner = "bashey"
-            };
+            return await _dataClient.GetByIdAsync(id);
         }
 
-        public DistributionList Save(DistributionList list)
+        public async Task<DistributionList> SaveAsync(DistributionList list)
         {
-            if (list.Id == 0)
-                list.Id = 1;
+            if (list == null)
+                throw new ArgumentNullException("list");
 
-            return list;
+            list.Dept = "eCAC";
+            return await _dataClient.SaveAsync(list);
         }
 
     }

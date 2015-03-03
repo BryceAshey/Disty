@@ -9,10 +9,10 @@ namespace Disty.Service.Interfaces
 {
     public interface IDistributionListService
     {
-        List<DistributionList> Get();
+        Task<List<DistributionList>> GetAsync();
 
-        DistributionList Get(int id);
+        Task<DistributionList> GetAsync(string id);
 
-        DistributionList Save(DistributionList list);
+        Task<DistributionList> SaveAsync(DistributionList list);
     }
 }
