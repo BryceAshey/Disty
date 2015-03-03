@@ -14,7 +14,6 @@ namespace Disty.Common.Contract.Distributions
             Creator = "bashey";
             Owner = "bashey";
             Dept = "eCAC";
-            Emails = new string[];
         }
 
         public string Id { get; set; }

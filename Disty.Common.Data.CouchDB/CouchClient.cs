@@ -34,7 +34,8 @@ namespace Disty.Common.Data.CouchDB
                     catch(Exception ex)
                     {
                         _log.Error("Error querying distribution lists.", ex);
-                    }                    
+                        return new List<T>();
+                    }
                 });
         }
 
