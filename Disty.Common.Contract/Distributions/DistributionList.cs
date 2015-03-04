@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Disty.Common.Contract.Distributions
 {
     [Serializable]
-    public class DistributionList
+    public class DistributionList : DistyEntity
     {
         public DistributionList()
         {

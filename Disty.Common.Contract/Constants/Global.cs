@@ -7,6 +7,7 @@
         public static class Connections
         {
             public const string PrimaryDB = "PrimaryDB";
+            public const string MembershipDB = "MembershipDB";
         }
     }
 }

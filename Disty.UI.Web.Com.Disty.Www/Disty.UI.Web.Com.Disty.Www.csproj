@@ -16,8 +16,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -172,13 +172,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\html\account\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Disty.Common.Contract\Disty.Common.Contract.csproj">
       <Project>{71ee7740-05b2-4437-b31a-cff07833c39f}</Project>
       <Name>Disty.Common.Contract</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Disty.Common.Data.CouchDB\Disty.Common.Data.CouchDB.csproj">
       <Project>{50b08902-d718-4a33-852e-e37c643ee83a}</Project>
