@@ -9,7 +9,8 @@
             {
                 create: { method: 'POST' },
                 update: { method: 'PUT' },
-                get: { method: 'GET', isArray: true },
+                get: { method: 'GET'},
+                query: { method: 'GET', isArray: true },
                 del: { method: 'DELETE' }
             });
 

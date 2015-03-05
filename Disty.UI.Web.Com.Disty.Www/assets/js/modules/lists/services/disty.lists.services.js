@@ -14,12 +14,15 @@
 
             return {
 
-                getAll: function(callback) {
+                getAll: function (callback) {
+
                     var getResource = new $distributionListResource();
-                    getResource.$get(function (object, responseHeaders) {
+                    console.log(getResource);
+                    var data = getResource.$query(function (object) {
                         console.log('here', object)
-                        $compose.sanitizeCallback(callback)(object);
+                        //$compose.sanitizeCallback(callback)(object);
                     });
+                    console.log(data);
                 },
 
                 create: function (name, callback) {
