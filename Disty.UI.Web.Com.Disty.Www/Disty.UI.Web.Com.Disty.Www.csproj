@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Disty.UI.Web.Com.Disty.Www</RootNamespace>
     <AssemblyName>Disty.UI.Web.Com.Disty.Www</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -187,10 +188,6 @@
     <ProjectReference Include="..\Disty.Common.IOC\Disty.Common.IOC.csproj">
       <Project>{6c668d9c-fc05-417b-a3df-a1036d71cad9}</Project>
       <Name>Disty.Common.IOC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Disty.Common.Log\Disty.Common.Log.csproj">
-      <Project>{5a6bca2b-1a8d-4f47-a0d4-28824341d7f6}</Project>
-      <Name>Disty.Common.Log</Name>
     </ProjectReference>
     <ProjectReference Include="..\Disty.Common.Net\Disty.Common.Net.csproj">
       <Project>{bc26f6c6-15e2-4c82-b69c-7a40de978305}</Project>
