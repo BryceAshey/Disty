@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DistyModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DistyModelStoreContainer">
+    <EntitySet Name="Lists" EntityType="DistyModel.Store.Lists" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Depts" EntityType="DistyModel.Store.Depts" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="DeptList" Association="DistyModel.Store.DeptList">
+      <End Role="Dept" EntitySet="Depts" />
+      <End Role="List" EntitySet="Lists" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Lists">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Owner" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Creator" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Emails" Type="longtext" Nullable="false" />
+    <Property Name="Dept_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Depts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="DeptList">
+    <End Role="Dept" Type="DistyModel.Store.Depts" Multiplicity="1" />
+    <End Role="List" Type="DistyModel.Store.Lists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dept">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="List">
+        <PropertyRef Name="Dept_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DistyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DistyModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lists" EntityType="DistyModel.List" />
+          <EntitySet Name="Depts" EntityType="DistyModel.Dept" />
+          <AssociationSet Name="DeptList" Association="DistyModel.DeptList">
+            <End Role="Dept" EntitySet="Depts" />
+            <End Role="List" EntitySet="Lists" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Dept" Relationship="DistyModel.DeptList" FromRole="List" ToRole="Dept" />
+          <Property Name="Owner" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Emails" Type="String" Nullable="false" MaxLength="Max" />
+        </EntityType>
+        <EntityType Name="Dept">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <NavigationProperty Name="Lists" Relationship="DistyModel.DeptList" FromRole="Dept" ToRole="List" />
+        </EntityType>
+        <Association Name="DeptList">
+          <End Type="DistyModel.Dept" Role="Dept" Multiplicity="1" />
+          <End Type="DistyModel.List" Role="List" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DistyModelStoreContainer" CdmEntityContainer="DistyModelContainer">
+    <EntitySetMapping Name="Lists">
+      <EntityTypeMapping TypeName="IsTypeOf(DistyModel.List)">
+        <MappingFragment StoreEntitySet="Lists">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="Creator" ColumnName="Creator" />
+          <ScalarProperty Name="Emails" ColumnName="Emails" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Depts">
+      <EntityTypeMapping TypeName="IsTypeOf(DistyModel.Dept)">
+        <MappingFragment StoreEntitySet="Depts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DeptList" TypeName="DistyModel.DeptList" StoreEntitySet="Lists">
+      <EndProperty Name="Dept">
+        <ScalarProperty Name="Id" ColumnName="Dept_Id" />
+      </EndProperty>
+      <EndProperty Name="List">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

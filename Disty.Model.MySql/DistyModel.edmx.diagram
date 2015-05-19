@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b71587cfdea546b99069225d08446a22" Name="Diagram1" >
+        <EntityTypeShape EntityType="DistyModel.List" Width="1.5" PointX="4.625" PointY="1.875" />
+        <EntityTypeShape EntityType="DistyModel.Dept" Width="1.5" PointX="2" PointY="1.625" />
+        <AssociationConnector Association="DistyModel.DeptList" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

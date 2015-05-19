@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Disty.Common.Contract.Distributions;
-using Disty.Common.Data;
+using Disty.Model.MySql.Repositories;
 using Disty.Service.Interfaces;
 using log4net;
 
@@ -12,33 +10,32 @@ namespace Disty.Service
 {
     public class DistributionListService : IDistributionListService
     {
-        private ILog _log;
-        private IDataClient<DistributionList> _dataClient;
+        private readonly ILog _log;
+        private readonly IDistributionListRepository _repository;
 
-        public DistributionListService(ILog log, IDataClient<DistributionList> dataClient)
+        public DistributionListService(ILog log, IDistributionListRepository repository)
         {
             _log = log;
-            _dataClient = dataClient;
+            _repository = repository;
         }
 
         public async Task<IEnumerable<DistributionList>> GetAsync()
         {
-            return await _dataClient.GetAsync();
+            return await _repository.GetAsync();
         }
 
-        public async Task<DistributionList> GetAsync(string id)
+        public async Task<DistributionList> GetAsync(int id)
         {
-            return await _dataClient.GetByIdAsync(id);
+            return await _repository.GetAsync(id);
         }
 
-        public async Task<DistributionList> SaveAsync(DistributionList list)
+        public async Task<int> SaveAsync(DistributionList list)
         {
             if (list == null)
                 throw new ArgumentNullException("list");
-
+            
             list.Dept = "eCAC";
-            return await _dataClient.SaveAsync(list);
+            return await _repository.SaveAsync(list);
         }
-
     }
 }

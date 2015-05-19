@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Disty.UI.Web.Com.Disty.Www</RootNamespace>
     <AssemblyName>Disty.UI.Web.Com.Disty.Www</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
@@ -58,12 +58,25 @@
     <Reference Include="EnsureThat">
       <HintPath>..\packages\Ensure.That.2.0.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.dll\EnsureThat.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MyCouch.Net45">
       <HintPath>..\packages\MyCouch.3.1.0\lib\net45\MyCouch.Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.6\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -181,10 +194,6 @@
       <Project>{71ee7740-05b2-4437-b31a-cff07833c39f}</Project>
       <Name>Disty.Common.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Disty.Common.Data.CouchDB\Disty.Common.Data.CouchDB.csproj">
-      <Project>{50b08902-d718-4a33-852e-e37c643ee83a}</Project>
-      <Name>Disty.Common.Data.CouchDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Disty.Common.IOC\Disty.Common.IOC.csproj">
       <Project>{6c668d9c-fc05-417b-a3df-a1036d71cad9}</Project>
       <Name>Disty.Common.IOC</Name>
@@ -200,6 +209,10 @@
     <ProjectReference Include="..\Disty.Common\Disty.Common.csproj">
       <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
       <Name>Disty.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Model.MySql\Disty.Model.MySql.csproj">
+      <Project>{1556E0C3-2A22-4DD3-AB86-50B612557453}</Project>
+      <Name>Disty.Model.MySql</Name>
     </ProjectReference>
     <ProjectReference Include="..\Disty.Service.Endpoint.Http\Disty.Service.Endpoint.Http.csproj">
       <Project>{3535b4b5-32e8-43df-9c7c-b3e011879c38}</Project>

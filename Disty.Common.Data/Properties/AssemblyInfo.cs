@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Disty.Common.Data.CouchDB")]
+[assembly: AssemblyTitle("Disty.Common.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Disty.Common.Data.CouchDB")]
+[assembly: AssemblyProduct("Disty.Common.Data")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("121c4f21-aba9-4315-b349-c618b31a1f0d")]
+[assembly: Guid("3946f057-0d1e-4c2b-9b44-c523a514d9cd")]
 
 // Version information for an assembly consists of the following four values:
 //

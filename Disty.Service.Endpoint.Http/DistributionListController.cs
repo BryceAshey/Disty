@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Disty.Common.Contract.Distributions;
-using Disty.Common.Net.Http;
 using Disty.Service.Interfaces;
 using log4net;
 
@@ -16,11 +13,8 @@ namespace Disty.Service.Endpoint.Http
 {
     public interface IDistributionListController
     {
-
         Task<IHttpActionResult> Get();
-
-        Task<IHttpActionResult> Get(string id);
-
+        Task<IHttpActionResult> Get(int id);
         Task<IHttpActionResult> Post(DistributionList list);
     }
 
@@ -28,8 +22,8 @@ namespace Disty.Service.Endpoint.Http
     [RoutePrefix("api/distributionList")]
     public class DistributionListController : ApiController, IDistributionListController
     {
-        private ILog _log;
-        private IDistributionListService _distributionListService;
+        private readonly IDistributionListService _distributionListService;
+        private readonly ILog _log;
 
         public DistributionListController(ILog log, IDistributionListService distributionListService)
         {
@@ -38,12 +32,12 @@ namespace Disty.Service.Endpoint.Http
         }
 
         [Route("")]
-        [ResponseType(typeof(IEnumerable<DistributionList>))]
+        [ResponseType(typeof (IEnumerable<DistributionList>))]
         public async Task<IHttpActionResult> Get()
         {
             try
             {
-                var list = await Task.Run<IEnumerable<DistributionList>>(() => _distributionListService.GetAsync());
+                var list = await Task.Run(() => _distributionListService.GetAsync());
                 if (list == null)
                 {
                     return NotFound();
@@ -59,13 +53,13 @@ namespace Disty.Service.Endpoint.Http
         }
 
         // {AE861F4D-52D7-4899-833A-207F23FFE03B}
-        [Route("{id:int}", Name="GetDistributionList")]
-        [ResponseType(typeof(DistributionList))]
-        public async Task<IHttpActionResult> Get(string id)
+        [Route("{id:int}", Name = "GetDistributionList")]
+        [ResponseType(typeof (DistributionList))]
+        public async Task<IHttpActionResult> Get(int id)
         {
             try
             {
-                var list = await Task.Run<DistributionList>(() => _distributionListService.GetAsync(id));
+                var list = await Task.Run(() => _distributionListService.GetAsync(id));
                 if (list == null)
                 {
                     return NotFound();
@@ -85,19 +79,19 @@ namespace Disty.Service.Endpoint.Http
         {
             try
             {
-                list = await Task.Run<DistributionList>(() => _distributionListService.SaveAsync(list));
-                if (list == null)
+                var id = await Task.Run(() => _distributionListService.SaveAsync(list));
+                if (id == 0)
                 {
                     return InternalServerError(new Exception("Unable to create distribution list."));
                 }
 
-                return CreatedAtRoute<DistributionList>("GetDistributionList", new { Id = list.Id }, null);
+                return CreatedAtRoute<DistributionList>("GetDistributionList", new {id}, null);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _log.Error("Error creating distribution list.", ex);
                 return InternalServerError(new Exception("Unable to create distribution list."));
-            }            
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ using Disty.Common.Contract.Constants;
 using Disty.Common.IOC;
 using Disty.Common.Log.Exceptions;
 using Disty.Common.Net.Http.Formatting;
+using Disty.Model.MySql;
 using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -92,7 +93,7 @@ namespace Disty.UI.Web.Com.Disty.Www
         {
             Mapper.Initialize(cfg =>
             {
-                //cfg.AddProfile(new PlatformMapProfile());
+                cfg.AddProfile(new MySqlMapProfile());
             });
         }
 

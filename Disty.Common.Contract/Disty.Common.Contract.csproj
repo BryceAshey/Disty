@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Disty.Common.Contract</RootNamespace>
     <AssemblyName>Disty.Common.Contract</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -55,6 +55,7 @@
     <Compile Include="Account\DistyUser.cs" />
     <Compile Include="ApiVersion.cs" />
     <Compile Include="Constants\Global.cs" />
+    <Compile Include="Distributions\DistributionDept.cs" />
     <Compile Include="Distributions\DistributionList.cs" />
     <Compile Include="DistyEntity.cs" />
     <Compile Include="RequestContext.cs" />
