@@ -33,8 +33,12 @@ namespace Disty.Service
         {
             if (list == null)
                 throw new ArgumentNullException("list");
-            
+
+            list.Creator = "bashey";
             list.Dept = "eCAC";
+            list.Emails = new string[] { };
+            list.Owner = "bashey";
+
             return await _repository.SaveAsync(list);
         }
     }

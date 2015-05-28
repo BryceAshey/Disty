@@ -52,7 +52,6 @@ namespace Disty.Service.Endpoint.Http
             }
         }
 
-        // {AE861F4D-52D7-4899-833A-207F23FFE03B}
         [Route("{id:int}", Name = "GetDistributionList")]
         [ResponseType(typeof (DistributionList))]
         public async Task<IHttpActionResult> Get(int id)
