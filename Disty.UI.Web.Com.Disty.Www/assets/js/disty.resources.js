@@ -4,15 +4,15 @@
     var baseUrl = distyConfig.baseUrl + '/api';
 
     function distributionListResource($resource) {
-        var resource = $resource(baseUrl + '/distributionList/:listId',
-            { listId: '@listId' },
-            {
-                create: { method: 'POST' },
-                update: { method: 'PUT' },
-                get: { method: 'GET'},
-                query: { method: 'GET', isArray: true },
-                del: { method: 'DELETE' }
-            });
+        var resource = $resource(baseUrl + '/distributionList/:listId'); //,
+            //{ listId: '@listId' },
+            //{
+            //    create: { method: 'POST' },
+            //    update: { method: 'PUT' },
+            //    get: { method: 'GET'},
+            //    query: { method: 'GET', params: {}, isArray: true },
+            //    del: { method: 'DELETE' }
+            //});
 
         return resource;
     }

@@ -30,8 +30,9 @@
                 alert('Delete List');
             }
 
+            console.log('got here 0');
             $distributionListService.getAll(function (data) {
-                console.log('got here 0');
+                console.log('got here 1');
                 $scope.lists = data;
             });
 

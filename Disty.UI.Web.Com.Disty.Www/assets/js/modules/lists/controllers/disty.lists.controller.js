@@ -9,7 +9,7 @@
     //lists.controller 
     (function () {
 
-        function Controller($scope, requestContext, $route, $routeParams, $loadingService, $timezoneService, $compose) {
+        function Controller($scope) {
             var $this = this;
             //Make services and models available to object
             this.$scope = $scope;

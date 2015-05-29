@@ -42,12 +42,10 @@ namespace Disty.Model.MySql.Repositories
         {
             using (var db = new DistyModelContainer())
             {
-                var query = from r in db.Lists
-                    where r.Id == id
-                    orderby r.Name
-                    select r;
-
-                return await query.Project().ToFirstOrDefaultAsync<TEntity>();
+                return await Task.FromResult<TEntity>(
+                        Mapper.Map<TSetEntity, TEntity>(db.Set<TSetEntity>()
+                                .Find(id))
+                    );
             }
         }
 
