@@ -36,7 +36,6 @@ namespace Disty.Service
 
             list.Creator = "bashey";
             list.Dept = "eCAC";
-            list.Emails = "[]";
             list.Owner = "bashey";
 
             return await _repository.SaveAsync(list);

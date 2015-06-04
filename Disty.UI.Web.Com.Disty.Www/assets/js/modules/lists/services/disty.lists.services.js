@@ -9,19 +9,27 @@
     //lists.service 
     (function ($ng, $module) {
 
-        function Service($compose, $distributionListResource) {
+        function Service($q, $compose, $distributionListResource) {
             var $this = this;
 
             return {
 
                 getAll: function (callback) {
-                    var getResource = new $distributionListResource();
-                    console.log('got here 3');
-                    getResource.$query({}, {}).then(function (data) {
-                        console.log('got here 4')
-                        console.log(data);
-                        $compose.sanitizeCallback(callback)(data);
-                    });
+
+                    var deferredObject = $q.defer();
+
+                    // retrieve the information...
+                    // no caching here. but can easily be added.
+                    $distributionListResource
+                        .query()
+                        .$promise
+                        .then(function (result) {
+                            deferredObject.resolve(result);
+                        }, function (errorMsg) {
+                            deferredObject.reject(errorMsg);
+                        });
+
+                    return deferredObject.promise;
                 },
 
                 create: function (name, callback) {
@@ -36,7 +44,7 @@
             }
         }
 
-        $module.factory('$distributionListService', ['$compose', '$distributionListResource', Service]);
+        $module.factory('$distributionListService', ['$q', '$compose', '$distributionListResource', Service]);
 
     })(ng, module);
 

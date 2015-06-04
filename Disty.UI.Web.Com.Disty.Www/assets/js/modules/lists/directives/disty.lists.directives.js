@@ -6,22 +6,28 @@
 		'disty.lists.service'
 	]);
 
-	//Course Template Options Directive
 	(function ($ng, $module) {
 
-		function Directive() {
+	    function Directive($distributionListService) {
+	        var listData;
+	        
+	        $distributionListService.getAll().then(function (data) {
+	            console.log(data);
+	            listData = data;
+	        }, function (error) {
+	            console.log('has failed... ' + error);
+	        });
 
 			return {
 				restrict: 'EA',
-				template: '<li>{{column.name}}</li>',
+				templateUrl: '/assets/html/lists/list.html',
 				scope: {
-				    item: "=distributionListsUl"
+				    lists: listData
 				},			    
 			};
 		}
 
-		$module.directive('distributionListsUl', [Directive]);
-
+		$module.directive('distributionListsUl', ['$distributionListService', Directive]);
 
 	})(ng, module);
 	

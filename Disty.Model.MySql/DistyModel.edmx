@@ -8,9 +8,14 @@
   <EntityContainer Name="DistyModelStoreContainer">
     <EntitySet Name="Lists" EntityType="DistyModel.Store.Lists" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Depts" EntityType="DistyModel.Store.Depts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Emails" EntityType="DistyModel.Store.Emails" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="DeptList" Association="DistyModel.Store.DeptList">
       <End Role="Dept" EntitySet="Depts" />
       <End Role="List" EntitySet="Lists" />
+    </AssociationSet>
+    <AssociationSet Name="ListEmail" Association="DistyModel.Store.ListEmail">
+      <End Role="List" EntitySet="Lists" />
+      <End Role="Email" EntitySet="Emails" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Lists">
@@ -21,7 +26,6 @@
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Owner" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Creator" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Emails" Type="longtext" Nullable="false" />
     <Property Name="Dept_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Depts">
@@ -30,6 +34,14 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Emails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="longtext" Nullable="false" />
+    <Property Name="List_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="DeptList">
     <End Role="Dept" Type="DistyModel.Store.Depts" Multiplicity="1" />
@@ -40,6 +52,18 @@
       </Principal>
       <Dependent Role="List">
         <PropertyRef Name="Dept_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ListEmail">
+    <End Role="List" Type="DistyModel.Store.Lists" Multiplicity="1" />
+    <End Role="Email" Type="DistyModel.Store.Emails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="List">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Email">
+        <PropertyRef Name="List_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -119,11 +143,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Emails">
+      <EntityTypeMapping TypeName="IsTypeOf(DistyModel.Email)">
+        <MappingFragment StoreEntitySet="Emails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="DeptList" TypeName="DistyModel.DeptList" StoreEntitySet="Lists">
       <EndProperty Name="Dept">
         <ScalarProperty Name="Id" ColumnName="Dept_Id" />
       </EndProperty>
       <EndProperty Name="List">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ListEmail" TypeName="DistyModel.ListEmail" StoreEntitySet="Emails">
+      <EndProperty Name="List">
+        <ScalarProperty Name="Id" ColumnName="List_Id" />
+      </EndProperty>
+      <EndProperty Name="Email">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

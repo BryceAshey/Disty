@@ -38,6 +38,21 @@ namespace Disty.Model.MySql.Repositories
             }
         }
 
+        public virtual async Task<IEnumerable<TEntity>> GetAsync(string includes)
+        {
+            using (var db = new DistyModelContainer())
+            {
+                return
+                    await
+                        Task.FromResult<IEnumerable<TEntity>>(
+                            db.Set<TSetEntity>()
+                                .Include(includes)
+                                .AsEnumerable()
+                                .Select(Mapper.Map<TSetEntity, TEntity>)
+                                .ToList());
+            }
+        }
+
         public virtual async Task<TEntity> GetAsync(int id)
         {
             using (var db = new DistyModelContainer())

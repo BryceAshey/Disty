@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,11 @@ namespace Disty.Model.MySql.Repositories
         public DistributionListRepository(ILog log, IDistributionDeptRepository deptRepository) : base(log)
         {
             _deptRepository = deptRepository;
+        }
+
+        public virtual async Task<IEnumerable<DistributionList>> GetAsync()
+        {
+            return await GetAsync("Emails");
         }
 
         public virtual async Task<int> SaveAsync(DistributionList item)
