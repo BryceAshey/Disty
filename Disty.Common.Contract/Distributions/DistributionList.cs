@@ -9,6 +9,6 @@ namespace Disty.Common.Contract.Distributions
         public string Name { get; set; }
         public string Owner { get; set; }
         public string Dept { get; set; }
-        public string[] Emails { get; set; }
+        public string Emails { get; set; }
     }
 }

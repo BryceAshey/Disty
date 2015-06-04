@@ -27,5 +27,6 @@ namespace Disty.Model.MySql
     
         public virtual DbSet<List> Lists { get; set; }
         public virtual DbSet<Dept> Depts { get; set; }
+        public virtual DbSet<Email> Emails { get; set; }
     }
 }

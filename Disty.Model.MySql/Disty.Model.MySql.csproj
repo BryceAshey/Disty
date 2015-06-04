@@ -74,6 +74,9 @@
     <Compile Include="Dept.cs">
       <DependentUpon>DistyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Email.cs">
+      <DependentUpon>DistyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MySqlMapProfile.cs" />
     <Compile Include="Repositories\DistributionDeptRepository.cs" />
     <Compile Include="Repositories\DistributionListRepository.cs" />

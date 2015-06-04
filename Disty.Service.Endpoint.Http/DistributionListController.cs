@@ -42,6 +42,7 @@ namespace Disty.Service.Endpoint.Http
             try
             {
                 var list = await Task.Run(() => _distributionListService.GetAsync());
+
                 if (list == null)
                 {
                     return NotFound();

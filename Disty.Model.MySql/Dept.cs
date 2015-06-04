@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace Disty.Model.MySql
 {
     using System;
@@ -22,7 +20,6 @@ namespace Disty.Model.MySql
         }
     
         public int Id { get; set; }
-        [Index(IsUnique = true)]
         public string Name { get; set; }
     
         public virtual ICollection<List> Lists { get; set; }

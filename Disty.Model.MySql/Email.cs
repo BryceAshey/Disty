@@ -12,19 +12,11 @@ namespace Disty.Model.MySql
     using System;
     using System.Collections.Generic;
     
-    public partial class List
+    public partial class Email
     {
-        public List()
-        {
-            this.Emails = new HashSet<Email>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Owner { get; set; }
-        public string Creator { get; set; }
+        public string Address { get; set; }
     
-        public virtual Dept Dept { get; set; }
-        public virtual ICollection<Email> Emails { get; set; }
+        public virtual List List { get; set; }
     }
 }

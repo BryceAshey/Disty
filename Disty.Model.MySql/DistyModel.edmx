@@ -54,6 +54,11 @@
             <End Role="Dept" EntitySet="Depts" />
             <End Role="List" EntitySet="Lists" />
           </AssociationSet>
+          <EntitySet Name="Emails" EntityType="DistyModel.Email" />
+          <AssociationSet Name="ListEmail" Association="DistyModel.ListEmail">
+            <End Role="List" EntitySet="Lists" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="List">
           <Key>
@@ -64,7 +69,7 @@
           <NavigationProperty Name="Dept" Relationship="DistyModel.DeptList" FromRole="List" ToRole="Dept" />
           <Property Name="Owner" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Creator" Type="String" Nullable="false" MaxLength="50" />
-          <Property Name="Emails" Type="String" Nullable="false" MaxLength="Max" />
+          <NavigationProperty Name="Emails" Relationship="DistyModel.ListEmail" FromRole="List" ToRole="Email" />
         </EntityType>
         <EntityType Name="Dept">
           <Key>
@@ -77,6 +82,18 @@
         <Association Name="DeptList">
           <End Type="DistyModel.Dept" Role="Dept" Multiplicity="1" />
           <End Type="DistyModel.List" Role="List" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <NavigationProperty Name="List" Relationship="DistyModel.ListEmail" FromRole="Email" ToRole="List" />
+        </EntityType>
+        <Association Name="ListEmail">
+          <End Type="DistyModel.List" Role="List" Multiplicity="1" />
+          <End Type="DistyModel.Email" Role="Email" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -91,7 +108,6 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Owner" ColumnName="Owner" />
           <ScalarProperty Name="Creator" ColumnName="Creator" />
-          <ScalarProperty Name="Emails" ColumnName="Emails" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

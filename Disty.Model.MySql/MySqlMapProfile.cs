@@ -16,11 +16,12 @@ namespace Disty.Model.MySql
             Mapper.CreateMap<Dept, DistributionDept>();
 
             Mapper.CreateMap<DistributionList, List>()
-                .ForMember(d => d.Emails, opt => opt.MapFrom(src => string.Join(",", src.Emails)))
                 .ForMember(i => i.Dept, opt => opt.Ignore());
             Mapper.CreateMap<List, DistributionList>()
-                .ForMember(d => d.Emails, opt => opt.MapFrom(src => src.Emails.Split(",".ToCharArray())))
                 .ForMember(d => d.Dept, opt => opt.Ignore());
+
+            Mapper.CreateMap<Email, EmailAddress>();
+            Mapper.CreateMap<EmailAddress, Email>();
         }
     }
 }

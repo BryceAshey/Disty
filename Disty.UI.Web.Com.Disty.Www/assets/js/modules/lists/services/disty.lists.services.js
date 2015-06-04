@@ -17,10 +17,11 @@
                 getAll: function (callback) {
                     var getResource = new $distributionListResource();
                     console.log('got here 3');
-                    var data = getResource.$query({}, {});
-                    console.log(data);
-                    $compose.sanitizeCallback(callback)(data);
-
+                    getResource.$query({}, {}).then(function (data) {
+                        console.log('got here 4')
+                        console.log(data);
+                        $compose.sanitizeCallback(callback)(data);
+                    });
                 },
 
                 create: function (name, callback) {

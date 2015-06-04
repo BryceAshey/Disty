@@ -57,6 +57,7 @@
     <Compile Include="Constants\Global.cs" />
     <Compile Include="Distributions\DistributionDept.cs" />
     <Compile Include="Distributions\DistributionList.cs" />
+    <Compile Include="Distributions\EmailAddress.cs" />
     <Compile Include="DistyEntity.cs" />
     <Compile Include="RequestContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
