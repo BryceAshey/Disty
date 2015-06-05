@@ -9,22 +9,14 @@
 	(function ($ng, $module) {
 
 	    function Directive($distributionListService) {
-	        var listData;
 	        
-	        $distributionListService.getAll().then(function (data) {
-	            console.log(data);
-	            listData = data;
-	        }, function (error) {
-	            console.log('has failed... ' + error);
-	        });
-
-			return {
-				restrict: 'EA',
-				templateUrl: '/assets/html/lists/list.html',
-				scope: {
-				    lists: listData
-				},			    
-			};
+	        return {
+	            restrict: 'EA',
+	            templateUrl: '/assets/html/lists/list.html',
+	            scope: {
+	                ngModel: '='
+	            }
+	        };
 		}
 
 		$module.directive('distributionListsUl', ['$distributionListService', Directive]);

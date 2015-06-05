@@ -29,7 +29,14 @@
             $scope.deleteList = function () {
                 alert('Delete List');
             }
-                        
+
+            $distributionListService.getAll().then(function (data) {
+                console.log(data);
+                $scope.lists = data;
+            }, function (error) {
+                console.log('has failed... ' + error);
+            });
+            
             return this;
 
         }
