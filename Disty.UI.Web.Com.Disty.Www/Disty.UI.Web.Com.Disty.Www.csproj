@@ -136,9 +136,9 @@
     <Content Include="assets\css\ngDialog-theme-default.min.css" />
     <Content Include="assets\css\ngDialog.min.css" />
     <Content Include="assets\html\home\index.html" />
-    <Content Include="assets\html\lists\addList.html" />
-    <Content Include="assets\html\lists\list.html" />
-    <Content Include="assets\html\lists\listGrid.html" />
+    <Content Include="assets\html\partials\lists\addList.html" />
+    <Content Include="assets\html\partials\lists\list.html" />
+    <Content Include="assets\html\partials\lists\listGrid.html" />
     <Content Include="assets\js\disty.config.js" />
     <Content Include="assets\js\disty.js" />
     <Content Include="assets\js\lib\ng-dialog\ngDialog.min.js" />

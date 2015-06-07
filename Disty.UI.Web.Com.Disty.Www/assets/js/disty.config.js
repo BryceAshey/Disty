@@ -26,9 +26,12 @@
                 .state('home', {
                     url: '/',
                     templateUrl: '/assets/html/home/index.html',
-                    controller: 'home.controller'
+                    controller: 'home.controller'                    
+                }).state('home.list', {
+                    parent: 'home',
+                    url: 'list/:listId',
+                    templateUrl: '/assets/html/partials/lists/listGrid.html'
                 });
-
         }
     };
 

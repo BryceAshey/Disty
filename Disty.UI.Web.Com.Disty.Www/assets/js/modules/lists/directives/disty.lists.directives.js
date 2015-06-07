@@ -8,18 +8,18 @@
 
 	(function ($ng, $module) {
 
-	    function Directive($distributionListService) {
+	    function Directive() {
 	        
 	        return {
 	            restrict: 'EA',
-	            templateUrl: '/assets/html/lists/list.html',
+	            templateUrl: '/assets/html/partials/lists/list.html',
 	            scope: {
 	                ngModel: '='
 	            }
 	        };
 		}
 
-		$module.directive('distributionListsUl', ['$distributionListService', Directive]);
+		$module.directive('distributionListsUl', [Directive]);
 
 	})(ng, module);
 	
