@@ -7,7 +7,8 @@ namespace Disty.Model.MySql.Repositories
 {
     public interface IEmailRepository : IRepository<EmailAddress, Email>
     {
-        Task<IEnumerable<EmailAddress>> GetAsync(int listId);
-        Task<EmailAddress> GetAsync(int listId, int id);        
+        Task<IEnumerable<EmailAddress>> GetByListAsync(int listId);
+        Task<IEnumerable<EmailAddress>> GetByListAsync(int listId, string includes);
+        Task<EmailAddress> GetEmailByListAsync(int listId, int id);
     }
 }

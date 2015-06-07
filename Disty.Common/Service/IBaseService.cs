@@ -7,7 +7,7 @@ using Disty.Common.Contract;
 
 namespace Disty.Common.Service
 {
-    public abstract interface IBaseService<T> where T : DistyEntity
+    public interface IBaseService<T> where T : DistyEntity
     {
         Task<IEnumerable<T>> GetAsync();
         Task<T> GetAsync(int id);

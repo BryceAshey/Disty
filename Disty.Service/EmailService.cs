@@ -21,9 +21,9 @@ namespace Disty.Service
             _repository = repository;
         }
 
-        public async Task<IEnumerable<EmailAddress>> GetAsync(int listId)
+        public async Task<IEnumerable<EmailAddress>> GetAsync()
         {
-            return await _repository.GetAsync(listId);
+            return await _repository.GetAsync();
         }
 
         public async Task<EmailAddress> GetAsync(int id)
@@ -31,6 +31,11 @@ namespace Disty.Service
             return await _repository.GetAsync(id);
         }
 
+        public async Task<IEnumerable<EmailAddress>> GetByListAsync(int listId)
+        {
+            return await _repository.GetByListAsync(listId);
+        }
+        
         public async Task<int> SaveAsync(EmailAddress item)
         {
             if (item == null)

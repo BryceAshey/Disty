@@ -5,27 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Disty.Common.Contract.Distributions;
+using log4net;
 
 namespace Disty.Model.MySql.Repositories
 {
     public class EmailRepository : RepositoryBase<EmailAddress, Email>, IEmailRepository
     {
+        public EmailRepository(ILog log)
+            : base(log)
+        {
+        }
+
         public override async Task<IEnumerable<EmailAddress>> GetAsync()
         {
-            throw new NotImplementedException("You must use the GetAsync call with the listId parameter.");
+            throw new NotImplementedException("You must use the GetByListAsync call with the listId parameter in place of this method.");
         }
 
         public override async Task<IEnumerable<EmailAddress>> GetAsync(string includes)
         {
-            throw new NotImplementedException("You must use the GetAsync call with the listId parameter.");
+            throw new NotImplementedException("You must use the GetByListAsync call with the listId parameter in place of this method.");
         }
 
-        public override async Task<EmailAddress> GetAsync(int id)
+        public virtual async Task<EmailAddress> GetAsync(int id)
         {
-            throw new NotImplementedException("You must use the GetAsync call with the listId parameter.");
+            using (var db = new DistyModelContainer())
+            {
+                return await Task.FromResult<EmailAddress>(
+                        Mapper.Map<Email, EmailAddress>(db.Set<Email>()
+                                .Find(id))
+                    );
+            }
         }
 
-        public virtual async Task<IEnumerable<EmailAddress>> GetAsync(int listId)
+        public virtual async Task<IEnumerable<EmailAddress>> GetByListAsync(int listId)
         {
             using (var db = new DistyModelContainer())
             {
@@ -41,10 +53,10 @@ namespace Disty.Model.MySql.Repositories
             }
         }
 
-        public virtual async Task<IEnumerable<EmailAddress>> GetAsync(int listId, string includes)
+        public virtual async Task<IEnumerable<EmailAddress>> GetByListAsync(int listId, string includes)
         {
-            if(!includes.Contains("List"))
-                throw new ArgumentException("Includes must include 'List' in the values.")
+            if (!includes.Contains("List"))
+                throw new ArgumentException("Includes must include 'List' in the values.");
 
             using (var db = new DistyModelContainer())
             {
@@ -57,22 +69,6 @@ namespace Disty.Model.MySql.Repositories
                                 .Where(e => e.List.Id == listId)
                                 .Select(Mapper.Map<Email, EmailAddress>)
                                 .ToList());
-            }
-        }
-
-        public virtual async Task<EmailAddress> GetAsync(int listId, int id)
-        {
-            using (var db = new DistyModelContainer())
-            {
-                var result = await Task.FromResult<EmailAddress>(
-                        Mapper.Map<Email, EmailAddress>(db.Set<Email>()
-                                .Find(id))
-                    );
-
-                if (result.ListId != listId)
-                    return null;
-
-                return result;
             }
         }
     }
