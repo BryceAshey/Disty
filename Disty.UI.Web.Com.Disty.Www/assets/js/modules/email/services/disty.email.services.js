@@ -2,14 +2,14 @@
 (function (ng) {
     'use strict';
 
-    var module = ng.module('disty.lists.service', [
+    var module = ng.module('disty.email.service', [
         'disty.common.api.services'
     ]);
 
     //lists.service 
     (function ($ng, $module) {
 
-        function Service($q, $compose, $distributionListResource) {
+        function Service($q, $compose, $emailResource) {
             var $this = this;
 
             return {
@@ -20,7 +20,7 @@
 
                     // retrieve the information...
                     // no caching here. but can easily be added.
-                    $distributionListResource
+                    $emailResource
                         .query()
                         .$promise
                         .then(function (result) {
@@ -32,14 +32,14 @@
                     return deferredObject.promise;
                 },
 
-                get: function (listId) {
+                get: function (listId, emailId) {
 
                     var deferredObject = $q.defer();
 
                     // retrieve the information...
                     // no caching here. but can easily be added.
-                    $distributionListResource
-                        .get({ listId: listId })
+                    $emailResource
+                        .get({ listId: listId, emailId: emailId })
                         .$promise
                         .then(function (result) {
                             deferredObject.resolve(result);
@@ -50,9 +50,9 @@
                     return deferredObject.promise;
                 },
 
-                create: function (name, callback) {
+                create: function (name, email, callback) {
 
-                    var createResource = new $distributionListResource({ name: name });
+                    var createResource = new $emailResource({ name: name, address: email });
                     createResource.$create(function (object, responseHeaders) {
                         $compose.sanitizeCallback(callback)($compose.apiLocation(responseHeaders));
                     });
@@ -62,7 +62,7 @@
             }
         }
 
-        $module.factory('$distributionListService', ['$q', '$compose', '$distributionListResource', Service]);
+        $module.factory('$emailService', ['$q', '$compose', '$emailResource', Service]);
 
     })(ng, module);
 

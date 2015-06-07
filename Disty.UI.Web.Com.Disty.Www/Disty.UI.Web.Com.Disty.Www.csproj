@@ -136,6 +136,7 @@
     <Content Include="assets\css\ngDialog-theme-default.min.css" />
     <Content Include="assets\css\ngDialog.min.css" />
     <Content Include="assets\html\home\index.html" />
+    <Content Include="assets\html\partials\email\addEmail.html" />
     <Content Include="assets\html\partials\lists\addList.html" />
     <Content Include="assets\html\partials\lists\list.html" />
     <Content Include="assets\html\partials\lists\listGrid.html" />
@@ -149,6 +150,8 @@
     <Content Include="assets\js\modules\common\services\disty.common.api.services.js" />
     <Content Include="assets\js\disty.resources.js" />
     <Content Include="assets\js\modules\common\services\disty.common.lib.services.js" />
+    <Content Include="assets\js\modules\email\email.modules.js" />
+    <Content Include="assets\js\modules\email\services\disty.email.services.js" />
     <Content Include="assets\js\modules\home\controllers\disty.home.controller.js" />
     <Content Include="assets\js\modules\home\home.modules.js" />
     <Content Include="assets\js\modules\lists\controllers\disty.lists.controller.js" />
@@ -177,6 +180,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="assets\js\lib\underscore\underscore-min.map" />
     <Content Include="assets\js\modules\lists\directives\disty.lists.directives.js" />
+    <Content Include="assets\js\modules\email\controllers\disty.email.controller.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

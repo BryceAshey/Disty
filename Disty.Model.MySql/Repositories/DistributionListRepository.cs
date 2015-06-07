@@ -19,12 +19,12 @@ namespace Disty.Model.MySql.Repositories
             _deptRepository = deptRepository;
         }
 
-        public virtual async Task<IEnumerable<DistributionList>> GetAsync()
+        public override async Task<IEnumerable<DistributionList>> GetAsync()
         {
             return await GetAsync("Emails");
         }
 
-        public virtual async Task<int> SaveAsync(DistributionList item)
+        public override async Task<int> SaveAsync(DistributionList item)
         {
             try
             {
@@ -57,7 +57,8 @@ namespace Disty.Model.MySql.Repositories
                         db.Entry(item).State = EntityState.Modified;
                     }
 
-                    return await db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
+                    return dbItem.Id;
                 }
             }
             catch (DbEntityValidationException e)

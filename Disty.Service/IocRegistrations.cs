@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Disty.Common.IOC;
 using Disty.Service.Interfaces;
 
@@ -14,6 +9,7 @@ namespace Disty.Service
         public void Register(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<DistributionListService>().As<IDistributionListService>();
+            containerBuilder.RegisterType<EmailService>().As<IEmailService>();
         }
     }
 }

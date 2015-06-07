@@ -78,9 +78,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Http\Formatting\JsonNetFormatter.cs" />
+    <Compile Include="Http\IController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Disty.Common.Contract\Disty.Common.Contract.csproj">
+      <Project>{71ee7740-05b2-4437-b31a-cff07833c39f}</Project>
+      <Name>Disty.Common.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Disty.Common.IOC\Disty.Common.IOC.csproj">
       <Project>{6c668d9c-fc05-417b-a3df-a1036d71cad9}</Project>
       <Name>Disty.Common.IOC</Name>

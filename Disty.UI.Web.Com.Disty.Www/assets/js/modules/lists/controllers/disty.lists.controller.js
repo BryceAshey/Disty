@@ -3,19 +3,38 @@
     'use strict';
 
     var module = ng.module('disty.lists.controller', [
-        'disty.lists.service'
+        'ngDialog',
+        'disty.lists.service',
+        'disty.email.controller'
     ]);
 
-    //lists.controller 
+    //list.controller 
     (function () {
 
-        function Controller($scope) {
+        function Controller($scope, $stateParams, $ngDialog, $distributionListService) {
             var $this = this;
             //Make services and models available to object
             this.$scope = $scope;
+            this.$stateParams = $stateParams;
+            this.$ngDialog = $ngDialog;
+            this.$distributionListService = $distributionListService;
 
-            // TODO Add code here
+            $distributionListService.get($stateParams.listId).then(function (data) {
+                $scope.list = data;
+            }, function (error) {
+                console.log('has failed... ' + error);
+            });
+            
+            $scope.addEmail = function () {
+                $ngDialog.open({
+                    template: '/assets/html/partials/email/addEmail.html',
+                    controller: 'addEmail.controller'
+                });
+            }
 
+            $scope.deleteEmail = function () {
+                alert('Delete Email');
+            }
 
             return this;
 
@@ -25,8 +44,8 @@
 
         };
 
-        module.controller('lists.controller',
-            ['$scope', Controller]);
+        module.controller('list.controller',
+            ['$scope', '$stateParams', 'ngDialog', '$distributionListService', Controller]);
 
     })();
 
@@ -37,8 +56,6 @@
             var $this = this;
             //Make services and models available to object
             this.$scope = $scope;
-
-            $scope.list = {};
 
             // TODO Add code here
 

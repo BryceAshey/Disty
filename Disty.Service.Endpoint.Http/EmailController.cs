@@ -12,30 +12,30 @@ using log4net;
 
 namespace Disty.Service.Endpoint.Http
 {
-    public interface IDistributionListController : IController<DistributionList>
+    public interface IEmailController : IController<EmailAddress>
     {
     }
 
     [AllowAnonymous]
-    [RoutePrefix("api/distributionList")]
-    public class DistributionListController : ApiController, IDistributionListController
+    [RoutePrefix("api/distributionList/{listId:int}/email")]
+    public class EmailController : ApiController, IEmailController
     {
-        private readonly IDistributionListService _service;
+        private readonly IEmailService _service;
         private readonly ILog _log;
 
-        public DistributionListController(ILog log, IDistributionListService service)
+        public EmailController(ILog log, IEmailService service)
         {
             _log = log;
             _service = service;
         }
 
         [Route("")]
-        [ResponseType(typeof (IEnumerable<DistributionList>))]
-        public async Task<IHttpActionResult> Get()
+        [ResponseType(typeof(IEnumerable<DistributionList>))]
+        public async Task<IHttpActionResult> Get(int listId)
         {
             try
             {
-                var list = await Task.Run(() => _service.GetAsync());
+                var list = await Task.Run(() => _service.GetAsync(listId));
 
                 if (list == null)
                 {
@@ -46,14 +46,14 @@ namespace Disty.Service.Endpoint.Http
             }
             catch (Exception ex)
             {
-                _log.Error("Error finding distribution list.", ex);
+                _log.Error("Error finding email.", ex);
                 return ResponseMessage(new HttpResponseMessage(HttpStatusCode.InternalServerError));
             }
         }
 
-        [Route("{id:int}", Name = "GetDistributionList")]
-        [ResponseType(typeof (DistributionList))]
-        public async Task<IHttpActionResult> Get(int id)
+        [Route("{id:int}", Name = "GetEmailAddress")]
+        [ResponseType(typeof(EmailAddress))]
+        public async Task<IHttpActionResult> Get(int listId, int id)
         {
             try
             {
@@ -67,28 +67,29 @@ namespace Disty.Service.Endpoint.Http
             }
             catch (Exception ex)
             {
-                _log.Error("Error finding distribution list.", ex);
+                _log.Error("Error finding email.", ex);
                 return ResponseMessage(new HttpResponseMessage(HttpStatusCode.InternalServerError));
             }
         }
 
         [Route("")]
-        public async Task<IHttpActionResult> Post(DistributionList item)
+        public async Task<IHttpActionResult> Post(int listId, EmailAddress item)
         {
             try
             {
+                item.ListId = listId;
                 var id = await Task.Run(() => _service.SaveAsync(item));
                 if (id == 0)
                 {
-                    return InternalServerError(new Exception("Unable to create distribution list."));
+                    return InternalServerError(new Exception("Unable to create email."));
                 }
 
-                return CreatedAtRoute<DistributionList>("GetDistributionList", new {id}, null);
+                return CreatedAtRoute<EmailAddress>("GetEmailAddress", new { id }, null);
             }
             catch (Exception ex)
             {
-                _log.Error("Error creating distribution list.", ex);
-                return InternalServerError(new Exception("Unable to create distribution list."));
+                _log.Error("Error creating email.", ex);
+                return InternalServerError(new Exception("Unable to create email."));
             }
         }
     }

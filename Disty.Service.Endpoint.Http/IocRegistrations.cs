@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using Disty.Common.IOC;
 
 namespace Disty.Service.Endpoint.Http
@@ -13,6 +8,7 @@ namespace Disty.Service.Endpoint.Http
         public void Register(ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<DistributionListController>().As<IDistributionListController>();
+            containerBuilder.RegisterType<EmailController>().As<IEmailController>();
             containerBuilder.RegisterAssemblyTypes(typeof(Disty.Service.Endpoint.Http.IocRegistrations).Assembly);
         }
     }

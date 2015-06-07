@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="AccountController.cs" />
     <Compile Include="DistributionListController.cs" />
+    <Compile Include="EmailController.cs" />
     <Compile Include="IocRegistrations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

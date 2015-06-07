@@ -21,7 +21,7 @@
 
             $scope.addList = function () {
                 $ngDialog.open({
-                    template: '/assets/html/lists/addList.html',
+                    template: '/assets/html/partials/lists/addList.html',
                     controller: 'addList.controller'
                 });
             }
@@ -31,7 +31,6 @@
             }
 
             $distributionListService.getAll().then(function (data) {
-                console.log(data);
                 $scope.lists = data;
             }, function (error) {
                 console.log('has failed... ' + error);

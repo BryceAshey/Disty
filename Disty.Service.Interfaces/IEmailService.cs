@@ -3,7 +3,7 @@ using Disty.Common.Service;
 
 namespace Disty.Service.Interfaces
 {
-    public interface IDistributionListService : IBaseService<DistributionList>
+    public interface IEmailService : IBaseService<EmailAddress>
     {
     }
 }

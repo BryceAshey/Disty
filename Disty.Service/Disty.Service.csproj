@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AccountService.cs" />
     <Compile Include="DistributionListService.cs" />
+    <Compile Include="EmailService.cs" />
     <Compile Include="IocRegistrations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

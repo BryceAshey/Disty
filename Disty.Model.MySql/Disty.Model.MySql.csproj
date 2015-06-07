@@ -95,6 +95,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Repositories\EmailRepository.cs" />
     <Compile Include="Repositories\IDistributionDeptRepository.cs" />
     <Compile Include="Repositories\IDistributionListRepository.cs" />
     <Compile Include="IocRegistrations.cs" />
@@ -102,6 +103,7 @@
       <DependentUpon>DistyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IEmailRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>

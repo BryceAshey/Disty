@@ -6,7 +6,7 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 06/03/2015 19:24:10
+-- Date Created: 06/06/2015 22:32:55
 -- Generated from EDMX file: C:\Users\BryceAshey\Documents\GitHub\Disty\Disty.Model.MySql\DistyModel.edmx
 -- Target version: 3.0.0.0
 -- --------------------------------------------------
@@ -18,6 +18,7 @@
 -- --------------------------------------------------
 
 --    ALTER TABLE `Lists` DROP CONSTRAINT `FK_DeptList`;
+--    ALTER TABLE `Emails` DROP CONSTRAINT `FK_ListEmail`;
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -25,6 +26,7 @@
 SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `Lists`;
     DROP TABLE IF EXISTS `Depts`;
+    DROP TABLE IF EXISTS `Emails`;
 SET foreign_key_checks = 1;
 
 -- --------------------------------------------------
@@ -54,7 +56,8 @@ ALTER TABLE `Depts` ADD PRIMARY KEY (Id);
 
 CREATE TABLE `Emails`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`Address` longtext NOT NULL, 
+	`Address` varchar (500) NOT NULL, 
+	`Name` varchar (50) NOT NULL, 
 	`List_Id` int NOT NULL);
 
 ALTER TABLE `Emails` ADD PRIMARY KEY (Id);

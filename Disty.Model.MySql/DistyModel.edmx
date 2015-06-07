@@ -40,7 +40,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Address" Type="longtext" Nullable="false" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="List_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="DeptList">
@@ -112,8 +113,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="500" />
           <NavigationProperty Name="List" Relationship="DistyModel.ListEmail" FromRole="Email" ToRole="List" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
         </EntityType>
         <Association Name="ListEmail">
           <End Type="DistyModel.List" Role="List" Multiplicity="1" />
@@ -148,6 +150,7 @@
         <MappingFragment StoreEntitySet="Emails">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
