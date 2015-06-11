@@ -3,6 +3,7 @@
 
     var _modules = [
         'disty.email.controller',
+        'disty.email.directives',
         'disty.email.service'
     ];
 

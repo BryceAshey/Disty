@@ -52,24 +52,5 @@ namespace Disty.Model.MySql.Repositories
                                 .ToList());
             }
         }
-
-        public virtual async Task<IEnumerable<EmailAddress>> GetByListAsync(int listId, string includes)
-        {
-            if (!includes.Contains("List"))
-                throw new ArgumentException("Includes must include 'List' in the values.");
-
-            using (var db = new DistyModelContainer())
-            {
-                return
-                    await
-                        Task.FromResult<IEnumerable<EmailAddress>>(
-                            db.Set<Email>()
-                                .Include(includes)
-                                .AsEnumerable()
-                                .Where(e => e.List.Id == listId)
-                                .Select(Mapper.Map<Email, EmailAddress>)
-                                .ToList());
-            }
-        }
     }
 }

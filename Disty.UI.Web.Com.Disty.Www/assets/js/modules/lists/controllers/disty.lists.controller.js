@@ -9,7 +9,7 @@
     ]);
 
     //list.controller 
-    (function () {
+    (function() {
 
         function Controller($scope, $stateParams, $ngDialog, $distributionListService) {
             var $this = this;
@@ -19,20 +19,20 @@
             this.$ngDialog = $ngDialog;
             this.$distributionListService = $distributionListService;
 
-            $distributionListService.get($stateParams.listId).then(function (data) {
+            $distributionListService.get($stateParams.listId).then(function(data) {
                 $scope.list = data;
-            }, function (error) {
+            }, function(error) {
                 console.log('has failed... ' + error);
             });
-            
-            $scope.addEmail = function () {
+
+            $scope.addEmail = function() {
                 $ngDialog.open({
                     template: '/assets/html/partials/email/addEmail.html',
                     controller: 'addEmail.controller'
                 });
             }
 
-            $scope.deleteEmail = function () {
+            $scope.deleteEmail = function() {
                 alert('Delete Email');
             }
 
@@ -45,7 +45,7 @@
         };
 
         module.controller('list.controller',
-            ['$scope', '$stateParams', 'ngDialog', '$distributionListService', Controller]);
+        ['$scope', '$stateParams', 'ngDialog', '$distributionListService', Controller]);
 
     })();
 

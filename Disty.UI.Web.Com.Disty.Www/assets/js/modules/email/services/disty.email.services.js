@@ -6,7 +6,7 @@
         'disty.common.api.services'
     ]);
 
-    //lists.service 
+    //email.service 
     (function ($ng, $module) {
 
         function Service($q, $compose, $emailResource) {
@@ -50,9 +50,9 @@
                     return deferredObject.promise;
                 },
 
-                create: function (name, email, callback) {
+                create: function (name, email, listId, callback) {
 
-                    var createResource = new $emailResource({ name: name, address: email });
+                    var createResource = new $emailResource({ name: name, address: email, listId: listId });
                     createResource.$create(function (object, responseHeaders) {
                         $compose.sanitizeCallback(callback)($compose.apiLocation(responseHeaders));
                     });

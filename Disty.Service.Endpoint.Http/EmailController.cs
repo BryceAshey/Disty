@@ -14,6 +14,9 @@ namespace Disty.Service.Endpoint.Http
 {
     public interface IEmailController : IController<EmailAddress>
     {
+        Task<IHttpActionResult> Get(int listId);
+        Task<IHttpActionResult> Get(int listId, int emailId);
+        Task<IHttpActionResult> Post(int listId, EmailAddress item);
     }
 
     [AllowAnonymous]
@@ -84,7 +87,7 @@ namespace Disty.Service.Endpoint.Http
                     return InternalServerError(new Exception("Unable to create email."));
                 }
 
-                return CreatedAtRoute<EmailAddress>("GetEmailAddress", new { id }, null);
+                return CreatedAtRoute<EmailAddress>("GetEmailAddress", new { listId, id }, null);
             }
             catch (Exception ex)
             {

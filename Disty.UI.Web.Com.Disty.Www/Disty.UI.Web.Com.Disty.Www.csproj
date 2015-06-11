@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\dashboard.css" />
+    <Content Include="assets\css\main.css" />
     <Content Include="assets\css\ngDialog-theme-default.min.css" />
     <Content Include="assets\css\ngDialog.min.css" />
     <Content Include="assets\html\home\index.html" />
@@ -181,6 +182,7 @@
     <Content Include="assets\js\lib\underscore\underscore-min.map" />
     <Content Include="assets\js\modules\lists\directives\disty.lists.directives.js" />
     <Content Include="assets\js\modules\email\controllers\disty.email.controller.js" />
+    <Content Include="assets\js\modules\email\directives\disty.email.directives.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

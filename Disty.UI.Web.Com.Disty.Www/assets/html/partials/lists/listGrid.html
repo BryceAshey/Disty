@@ -1,6 +1,5 @@
 ﻿<div ng-controller="list.controller">
     <h2 class="sub-header">{{list.name}}</h2>
-    <div><i class="fa fa-plus mouse-pointer" ng-click="addEmail()"></i> <i class="fa fa-minus mouse-pointer" ng-click="deleteEmail()"></i></div>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -10,10 +9,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat ="list in list.Emails">
-                    <td>{{Name}}</td>
-                    <td>{{Address}}</td>
+                <tr ng-repeat="email in list.emails">
+                    <td>{{email.name}}</td>
+                    <td>{{email.address}}<i class="fa fa-minus fa-2 pull-right red-text"/></td>
                 </tr>
+                <tr add-email ng-model="list"></tr>
             </tbody>
         </table>
     </div>

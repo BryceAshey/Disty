@@ -14,6 +14,9 @@ namespace Disty.Service.Endpoint.Http
 {
     public interface IDistributionListController : IController<DistributionList>
     {
+        Task<IHttpActionResult> Get();
+        Task<IHttpActionResult> Get(int id);
+        Task<IHttpActionResult> Post(DistributionList item);
     }
 
     [AllowAnonymous]

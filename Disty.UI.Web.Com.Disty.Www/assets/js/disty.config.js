@@ -59,6 +59,7 @@
                 'modules/common/services/disty.common.lib.services',
                 'modules/common/common.modules',
                 'modules/email/controllers/disty.email.controller',
+                'modules/email/directives/disty.email.directives',
                 'modules/email/services/disty.email.services',
                 'modules/email/email.modules',
                 'modules/home/controllers/disty.home.controller',
