@@ -138,7 +138,6 @@
     <Content Include="assets\css\ngDialog.min.css" />
     <Content Include="assets\html\home\index.html" />
     <Content Include="assets\html\partials\email\addEmail.html" />
-    <Content Include="assets\html\partials\lists\addList.html" />
     <Content Include="assets\html\partials\lists\list.html" />
     <Content Include="assets\html\partials\lists\listGrid.html" />
     <Content Include="assets\js\disty.config.js" />

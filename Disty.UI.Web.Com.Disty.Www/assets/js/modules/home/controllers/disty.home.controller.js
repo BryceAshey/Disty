@@ -17,17 +17,15 @@
             this.$scope = $scope;
             this.$ngDialog = $ngDialog;
 
-            // TODO Add code here
+            $scope.listName = '';
+            $scope.saveList = function () {
+                if ($scope.listName === '')
+                    return;
 
-            $scope.addList = function () {
-                $ngDialog.open({
-                    template: '/assets/html/partials/lists/addList.html',
-                    controller: 'addList.controller'
+                $distributionListService.create($scope.listName, function (data) {
+                    $scope.lists.push({ id: data.id, name: $scope.listName });
+                    $scope.listName = '';
                 });
-            }
-
-            $scope.deleteList = function () {
-                alert('Delete List');
             }
 
             $distributionListService.getAll().then(function (data) {

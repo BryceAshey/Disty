@@ -1,1 +1,3 @@
-﻿    <li scope="col" ng-repeat="list in ngModel"><a ng-href="#/list/{{list.id}}">{{list.name}}</a></li>
+﻿    <li scope="col" ng-repeat="list in ngModel">
+        <a ng-href="#/list/{{list.id}}">{{list.name}} <i class="fa fa-minus pull-right mouse-pointer red-text" ng-click="deleteList(list.id, $event)"></i></a>
+    </li>
