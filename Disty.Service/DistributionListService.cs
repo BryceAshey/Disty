@@ -19,6 +19,11 @@ namespace Disty.Service
             _repository = repository;
         }
 
+        public void DeleteAsync(int id)
+        {
+            _repository.DeleteAsync(id);
+        }
+
         public async Task<IEnumerable<DistributionList>> GetAsync()
         {
             return await _repository.GetAsync();

@@ -14,6 +14,23 @@
 
             return {
 
+                del: function(listId, id) {
+                    var deferredObject = $q.defer();
+
+                    // retrieve the information...
+                    // no caching here. but can easily be added.
+                    $emailResource
+                        .del({ listId: listId, id: id })
+                        .$promise
+                        .then(function(result) {
+                            deferredObject.resolve(result);
+                        }, function(errorMsg) {
+                            deferredObject.reject(errorMsg);
+                        });
+
+                    return deferredObject.promise;
+                },
+
                 getAll: function () {
 
                     var deferredObject = $q.defer();

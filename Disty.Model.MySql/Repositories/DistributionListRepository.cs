@@ -63,19 +63,7 @@ namespace Disty.Model.MySql.Repositories
             }
             catch (DbEntityValidationException e)
             {
-                var msg = "";
-
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    msg += string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:\r\n",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        msg += string.Format("- Property: \"{0}\", Error: \"{1}\"\r\n",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                
+                var msg = HandleValidationError(e);
                 _log.Error(string.Format("Error saving Disty list:\r\n  {0}", msg), e);
                 throw new LoggedException(msg, e);
             }

@@ -11,7 +11,7 @@
             <tbody>
                 <tr ng-repeat="email in list.emails">
                     <td>{{email.name}}</td>
-                    <td>{{email.address}}<i class="fa fa-minus fa-2 pull-right red-text"/></td>
+                    <td>{{email.address}}<i class="fa fa-minus fa-2 pull-right red-text mouse-pointer" ng-click="deleteEmail(email.id)" /></td>
                 </tr>
                 <tr add-email ng-model="list"></tr>
             </tbody>

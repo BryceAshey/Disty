@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Disty.Common.Contract.Distributions;
+using Disty.Common.Log.Exceptions;
 using log4net;
 
 namespace Disty.Model.MySql.Repositories
@@ -50,6 +53,42 @@ namespace Disty.Model.MySql.Repositories
                                 .Where(e => e.List.Id == listId)
                                 .Select(Mapper.Map<Email, EmailAddress>)
                                 .ToList());
+            }
+        }
+
+        public override async Task<int> SaveAsync(EmailAddress item)
+        {
+            try
+            {
+                if(item == null)
+                    throw new ArgumentNullException("item");
+
+                using (var db = new DistyModelContainer())
+                {
+                    var dbItem = Mapper.Map<EmailAddress, Email>(item);
+                    if (item.Id == 0)
+                    {
+                        var list = await db.Set<List>().FindAsync(item.ListId);
+                        if (list == null)
+                            throw new InvalidOperationException("Unable to find associated list.");
+
+                        list.Emails.Add(dbItem);
+                    }
+                    else
+                    {
+                        db.Set<Email>().Attach(dbItem);
+                        db.Entry(item).State = EntityState.Modified;
+                    }
+
+                    await db.SaveChangesAsync();
+                    return dbItem.Id;
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                var msg = HandleValidationError(e);
+                _log.Error(string.Format("Error saving Disty list:\r\n  {0}", msg), e);
+                throw new LoggedException(msg, e);
             }
         }
     }

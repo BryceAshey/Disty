@@ -10,6 +10,7 @@ namespace Disty.Common.Data
         where TEntity : DistyEntity
         where TSetEntity : class
     {
+        void DeleteAsync(int id);
         Task<IEnumerable<TEntity>> GetAsync();
         Task<TEntity> GetAsync(int id);
         Task<int> SaveAsync(TEntity list);

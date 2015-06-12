@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Disty.Common.Contract.Distributions;
 using Disty.Model.MySql.Repositories;
@@ -21,6 +19,11 @@ namespace Disty.Service
             _repository = repository;
         }
 
+        public void DeleteAsync(int id)
+        {
+            _repository.DeleteAsync(id);
+        }
+
         public async Task<IEnumerable<EmailAddress>> GetAsync()
         {
             return await _repository.GetAsync();
@@ -35,14 +38,15 @@ namespace Disty.Service
         {
             return await _repository.GetByListAsync(listId);
         }
-        
+
         public async Task<int> SaveAsync(EmailAddress item)
         {
             if (item == null)
                 throw new ArgumentNullException("item");
 
             if (string.IsNullOrEmpty(item.Address) || string.IsNullOrEmpty(item.Name))
-                throw new ArgumentNullException("item", "Neither Address nor Name may be null or an empty string.  Both are required.");
+                throw new ArgumentNullException("item",
+                    "Neither Address nor Name may be null or an empty string.  Both are required.");
 
             //TODO when there is security add check that the user can update this list.
 

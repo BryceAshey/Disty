@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Disty.Common.Contract;
-using Disty.Common.Contract.Distributions;
 using Disty.Common.Data;
 using log4net;
 
 namespace Disty.Model.MySql.Repositories
 {
-    public abstract class RepositoryBase<TEntity, TSetEntity> : IRepository<TEntity, TSetEntity> 
+    public abstract class RepositoryBase<TEntity, TSetEntity> : IRepository<TEntity, TSetEntity>
         where TEntity : DistyEntity
         where TSetEntity : class
     {
@@ -24,6 +23,19 @@ namespace Disty.Model.MySql.Repositories
             _log = log;
         }
 
+        public virtual async void DeleteAsync(int id)
+        {
+            using (var db = new DistyModelContainer())
+            {
+                var obj = await db.Set<TSetEntity>().FindAsync(id);
+                if (obj == null)
+                    return;
+
+                db.Set<TSetEntity>().Remove(obj);
+                await db.SaveChangesAsync();
+            }
+        }
+
         public virtual async Task<IEnumerable<TEntity>> GetAsync()
         {
             using (var db = new DistyModelContainer())
@@ -31,25 +43,9 @@ namespace Disty.Model.MySql.Repositories
                 return
                     await
                         Task.FromResult<IEnumerable<TEntity>>(
-                            db.Set<TSetEntity>()
+                            Enumerable.ToList(db.Set<TSetEntity>()
                                 .AsEnumerable()
-                                .Select(Mapper.Map<TSetEntity, TEntity>)
-                                .ToList());
-            }
-        }
-
-        public virtual async Task<IEnumerable<TEntity>> GetAsync(string includes)
-        {
-            using (var db = new DistyModelContainer())
-            {
-                return
-                    await
-                        Task.FromResult<IEnumerable<TEntity>>(
-                            db.Set<TSetEntity>()
-                                .Include(includes)
-                                .AsEnumerable()
-                                .Select(Mapper.Map<TSetEntity, TEntity>)
-                                .ToList());
+                                .Select(Mapper.Map<TSetEntity, TEntity>)));
             }
         }
 
@@ -57,9 +53,9 @@ namespace Disty.Model.MySql.Repositories
         {
             using (var db = new DistyModelContainer())
             {
-                return await Task.FromResult<TEntity>(
-                        Mapper.Map<TSetEntity, TEntity>(db.Set<TSetEntity>()
-                                .Find(id))
+                return await Task.FromResult(
+                    Mapper.Map<TSetEntity, TEntity>(db.Set<TSetEntity>()
+                        .Find(id))
                     );
             }
         }
@@ -72,31 +68,51 @@ namespace Disty.Model.MySql.Repositories
             }
         }
 
-        public virtual async Task<IEnumerable<TEntity>> QueryAsync(Expression<Func<TSetEntity, bool>> expression, DistyModelContainer db)
+        public abstract Task<int> SaveAsync(TEntity item);
+
+        public virtual async Task<IEnumerable<TEntity>> GetAsync(string includes)
         {
-            if(db == null)
+            using (var db = new DistyModelContainer())
+            {
+                return
+                    await
+                        Task.FromResult<IEnumerable<TEntity>>(
+                            Enumerable.ToList(db.Set<TSetEntity>()
+                                .Include(includes)
+                                .AsEnumerable()
+                                .Select(Mapper.Map<TSetEntity, TEntity>)));
+            }
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> QueryAsync(Expression<Func<TSetEntity, bool>> expression,
+            DistyModelContainer db)
+        {
+            if (db == null)
                 throw new ArgumentNullException("db");
 
             return await db.Set<TSetEntity>().Where(expression).Project().ToListAsync<TEntity>();
         }
 
-        public virtual async Task<int> SaveAsync(TEntity item)
-        {
-            using (var db = new DistyModelContainer())
-            {
-                var dbItem = Mapper.Map<TEntity, TSetEntity>(item);
-                if (item.Id == 0)
-                {
-                    db.Set<TSetEntity>().Add(dbItem);
-                }
-                else
-                {
-                    db.Set<TSetEntity>().Attach(dbItem);
-                    db.Entry(item).State = EntityState.Modified;
-                }
+        #region Internals
 
-                return await db.SaveChangesAsync();
+        protected internal string HandleValidationError(DbEntityValidationException e)
+        {
+            var msg = "";
+
+            foreach (var eve in e.EntityValidationErrors)
+            {
+                msg += string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:\r\n",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                foreach (var ve in eve.ValidationErrors)
+                {
+                    msg += string.Format("- Property: \"{0}\", Error: \"{1}\"\r\n",
+                        ve.PropertyName, ve.ErrorMessage);
+                }
             }
+
+            return msg;
         }
+
+        #endregion
     }
 }

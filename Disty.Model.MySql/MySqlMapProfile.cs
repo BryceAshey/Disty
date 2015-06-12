@@ -23,7 +23,7 @@ namespace Disty.Model.MySql
             Mapper.CreateMap<Email, EmailAddress>()
                 .ForMember(i => i.ListId, opt => opt.MapFrom(src => src.List.Id));
             Mapper.CreateMap<EmailAddress, Email>()
-                .ForMember(i => i.List, opt => opt.MapFrom(src => new List() { Id = src.ListId }));
+                .ForMember(i => i.List, opt => opt.Ignore());
         }
     }
 }

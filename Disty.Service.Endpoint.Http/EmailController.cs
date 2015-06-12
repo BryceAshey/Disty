@@ -14,6 +14,7 @@ namespace Disty.Service.Endpoint.Http
 {
     public interface IEmailController : IController<EmailAddress>
     {
+        Task<IHttpActionResult> Delete(int listId, int id);
         Task<IHttpActionResult> Get(int listId);
         Task<IHttpActionResult> Get(int listId, int emailId);
         Task<IHttpActionResult> Post(int listId, EmailAddress item);
@@ -30,6 +31,21 @@ namespace Disty.Service.Endpoint.Http
         {
             _log = log;
             _service = service;
+        }
+
+        [Route("")]
+        public async Task<IHttpActionResult> Delete(int listId, int id)
+        {
+            try
+            {
+                await Task.Run(() => _service.DeleteAsync(id));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Error creating email.", ex);
+                return InternalServerError(new Exception("Unable to create email."));
+            }
         }
 
         [Route("")]
@@ -76,7 +92,7 @@ namespace Disty.Service.Endpoint.Http
         }
 
         [Route("")]
-        public async Task<IHttpActionResult> Post(int listId, EmailAddress item)
+        public async Task<IHttpActionResult> Post(int listId, [FromBody] EmailAddress item)
         {
             try
             {

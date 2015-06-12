@@ -10,6 +10,7 @@ namespace Disty.Model.MySql
         {
             containerBuilder.RegisterType<DistributionDeptRepository>().As<IDistributionDeptRepository>();
             containerBuilder.RegisterType<DistributionListRepository>().As<IDistributionListRepository>();
+            containerBuilder.RegisterType<EmailRepository>().As<IEmailRepository>();
         }
     }
 }
