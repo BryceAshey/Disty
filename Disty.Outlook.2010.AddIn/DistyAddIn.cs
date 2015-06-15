@@ -8,13 +8,13 @@ using Office = Microsoft.Office.Core;
 
 namespace Disty.Outlook._2010.AddIn
 {
-    public partial class ThisAddIn
+    public partial class DistyAddIn
     {
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        private void DistyAddIn_Startup(object sender, System.EventArgs e)
         {
         }
 
-        private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
+        private void DistyAddIn_Shutdown(object sender, System.EventArgs e)
         {
         }
 
@@ -26,8 +26,8 @@ namespace Disty.Outlook._2010.AddIn
         /// </summary>
         private void InternalStartup()
         {
-            this.Startup += new System.EventHandler(ThisAddIn_Startup);
-            this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
+            this.Startup += new System.EventHandler(DistyAddIn_Startup);
+            this.Shutdown += new System.EventHandler(DistyAddIn_Shutdown);
         }
         
         #endregion
