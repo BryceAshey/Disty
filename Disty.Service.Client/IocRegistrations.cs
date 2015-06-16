@@ -13,7 +13,7 @@ namespace Disty.Service.Client
     {
         public void Register(ContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterType<DistyClient>().As<IDistyClient>();
+            containerBuilder.RegisterGeneric(typeof(DistyClient<>)).As(typeof(IDistyClient<>));
             containerBuilder.RegisterType<ListClient>().As<IDistributionListService>();
             containerBuilder.RegisterAssemblyTypes(typeof(Disty.Common.Contract.DistyEntity).Assembly);
         }

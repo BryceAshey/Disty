@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Disty.Service.Client</RootNamespace>
     <AssemblyName>Disty.Service.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +33,10 @@
   <ItemGroup>
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -63,6 +68,10 @@
     <ProjectReference Include="..\Disty.Common.IOC\Disty.Common.IOC.csproj">
       <Project>{6c668d9c-fc05-417b-a3df-a1036d71cad9}</Project>
       <Name>Disty.Common.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Disty.Common\Disty.Common.csproj">
+      <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
+      <Name>Disty.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Disty.Service.Interfaces\Disty.Service.Interfaces.csproj">
       <Project>{79989dd7-da02-4eb0-84ba-4e0eea84de10}</Project>

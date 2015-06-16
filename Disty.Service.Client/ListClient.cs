@@ -10,9 +10,9 @@ namespace Disty.Service.Client
 {
     public class ListClient : IDistributionListService
     {
-        private readonly IDistyClient _client;
+        private readonly IDistyClient<DistributionList> _client;
 
-        public ListClient(IDistyClient client)
+        public ListClient(IDistyClient<DistributionList> client)
         {
             _client = client;
         }
@@ -24,20 +24,12 @@ namespace Disty.Service.Client
 
         public async Task<IEnumerable<DistributionList>> GetAsync()
         {
-            var result = await _client.GetAsync("api/distributionList");
-
-            if(result.IsSuccessStatusCode)
-            {
-                var body = await result.Content.ReadAsStringAsync();
-
-            }
-
-            throw new NotImplementedException();
+            return await _client.GetAsync("api/distributionList");
         }
 
         public async Task<DistributionList> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _client.FindAsync(string.Format("api/distributionList/{0}", id));
         }
 
         public async Task<int> SaveAsync(DistributionList item)

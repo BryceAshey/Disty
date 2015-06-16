@@ -28,10 +28,11 @@
     <RootNamespace>Disty.Outlook._2010.AddIn</RootNamespace>
     <AssemblyName>Disty.Outlook.2010.AddIn</AssemblyName>
     <LoadBehavior>3</LoadBehavior>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <BootstrapperComponentsLocation>HomeSite</BootstrapperComponentsLocation>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -118,6 +119,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -184,6 +187,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
     <None Include="Disty.Outlook.2010.AddIn_1_TemporaryKey.pfx" />
@@ -196,6 +200,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="DistyAddIn.cs">
       <SubType>Code</SubType>
@@ -217,6 +222,10 @@
       <Project>{6c668d9c-fc05-417b-a3df-a1036d71cad9}</Project>
       <Name>Disty.Common.IOC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Disty.Common\Disty.Common.csproj">
+      <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
+      <Name>Disty.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Disty.Service.Client\Disty.Service.Client.csproj">
       <Project>{613fc1ff-55b7-4614-9794-0a92d7b85069}</Project>
       <Name>Disty.Service.Client</Name>
@@ -225,6 +234,9 @@
       <Project>{79989dd7-da02-4eb0-84ba-4e0eea84de10}</Project>
       <Name>Disty.Service.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
