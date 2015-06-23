@@ -21,6 +21,7 @@ namespace Disty.Service.Client
     public class DistyClient<T> : HttpClient, IDistyClient<T> where T : DistyEntity
     {
         public DistyClient()
+            : base(new HttpClientHandler() { PreAuthenticate = true, UseDefaultCredentials = true })
         {
             var baseUri = ConfigurationManager.AppSettings["baseUri"] as string;
             if (string.IsNullOrEmpty(baseUri))
@@ -31,58 +32,37 @@ namespace Disty.Service.Client
 
         public async Task<T> FindAsync(string path)
         {
-            Uri uri;
-            if (!Uri.TryCreate(BaseAddress, path, out uri))
-                throw new InvalidOperationException(string.Format("Unable to create Uri from base {0} and relative {1}.", BaseAddress, path));
-
-            return await base.GetAsync(uri).ContinueWith<T>(task => {
-                var response = task.Result;
+            return await base.GetAsync(path).ContinueWith<T>(t =>
+            {
+                var response = t.Result;
                 if(response.IsSuccessStatusCode)
                 {
-                    response.Content.ReadAsStreamAsync().ContinueWith(t =>
-                    {
-                        var stream = t.Result;
-                        using (var sr = new StreamReader(stream))
-                        {
-                            using (var reader = new JsonTextReader(sr))
-                            {
-                                var serializer = new JsonSerializer();
-                                return serializer.Deserialize<T>(reader);
-                            }
-                        }
-                    });
+                    var content = response.Content.ReadAsAsync<T>();
+                    if (content.Status != TaskStatus.Faulted)
+                        return content.Result;
+                    else
+                        throw content.Exception;
                 }
 
-                return default(T);
+                return default(T) as T;
             });
         }
 
         public async Task<IEnumerable<T>> GetAsync(string path)
         {
-            Uri uri;
-            if (!Uri.TryCreate(BaseAddress, path, out uri))
-                throw new InvalidOperationException(string.Format("Unable to create Uri from base {0} and relative {1}.", BaseAddress, path));
-
-            return await base.GetAsync(uri).ContinueWith<IEnumerable<T>>(task =>
+            return await base.GetAsync(path).ContinueWith<IEnumerable<T>>(t =>
             {
-                var response = task.Result;
+                var response = t.Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    response.Content.ReadAsStreamAsync().ContinueWith(t =>
-                    {
-                        var stream = t.Result;
-                        using (var sr = new StreamReader(stream))
-                        {
-                            using (var reader = new JsonTextReader(sr))
-                            {
-                                var serializer = new JsonSerializer();
-                                return serializer.Deserialize<IEnumerable<T>>(reader);
-                            }
-                        }
-                    });
+                    var content = response.Content.ReadAsAsync<List<T>>();
+                    if (content.Status != TaskStatus.Faulted)
+                        return content.Result;
+                    else
+                        throw content.Exception;
                 }
 
-                return default(IEnumerable<T>);
+                return new List<T>() as IEnumerable<T>;
             });
         }
 

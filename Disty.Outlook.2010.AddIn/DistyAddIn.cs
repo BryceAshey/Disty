@@ -13,16 +13,12 @@ namespace Disty.Outlook._2010.AddIn
 {
     public partial class DistyAddIn
     {
-        public IContainer Container;
-
         private void DistyAddIn_Startup(object sender, System.EventArgs e)
         {
-            Container = ContainerInstanceProvider.GetContainerInstance(Assembly.GetCallingAssembly());
         }
 
         private void DistyAddIn_Shutdown(object sender, System.EventArgs e)
         {
-            Container.Dispose();
         }
 
         #region VSTO generated code

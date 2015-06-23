@@ -16,18 +16,28 @@ namespace Disty.Outlook._2010.AddIn
 
         private void DistyRibbon_Load(object sender, RibbonUIEventArgs e)
         {
-            _listClient = new ListClient(new DistyClient<DistributionList>());
-
-            var lists = _listClient.GetAsync().Result;
-            foreach(var list in lists)
+            try
             {
-                var item = this.Factory.CreateRibbonDropDownItem();
-                item.Label = list.Name;
-                item.Tag = list.Id.ToString();
-                this.cbLists.Items.Add(item);
-            }
+                _listClient = new ListClient(new DistyClient<DistributionList>());
 
-            this.cbLists.Text = this.cbLists.Items.First().Label;
+                var lists = _listClient.GetAsync().Result;
+                if (lists == null)
+                    return;
+
+                foreach (var list in lists)
+                {
+                    var item = this.Factory.CreateRibbonDropDownItem();
+                    item.Label = list.Name;
+                    item.Tag = list.Id.ToString();
+                    this.cbLists.Items.Add(item);
+                }
+
+                this.cbLists.Text = this.cbLists.Items.First().Label;
+            }
+            catch(Exception ex)
+            {
+                var exception = ex;
+            }
         }
     }
 }
