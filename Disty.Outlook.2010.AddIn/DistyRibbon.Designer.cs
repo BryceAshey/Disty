@@ -59,6 +59,8 @@
             // 
             this.cbLists.Label = "List";
             this.cbLists.Name = "cbLists";
+            this.cbLists.Text = null;
+            this.cbLists.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.cbLists_TextChanged);
             // 
             // DistyRibbon
             // 
