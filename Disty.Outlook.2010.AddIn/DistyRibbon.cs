@@ -14,6 +14,7 @@ namespace Disty.Outlook._2010.AddIn
     {
         private IDistributionListService _listClient;
         
+
         private void DistyRibbon_Load(object sender, RibbonUIEventArgs e)
         {
             try
