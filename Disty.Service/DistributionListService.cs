@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Disty.Common.Contract.Distributions;
+using Disty.Common.Data.Repositories;
 using Disty.Model.MySql.Repositories;
 using Disty.Service.Interfaces;
 using log4net;
@@ -41,6 +42,7 @@ namespace Disty.Service
 
             list.Creator = "bashey";
             list.Dept = "eCAC";
+            list.DeptId = 1;
             list.Owner = "bashey";
 
             return await _repository.SaveAsync(list);

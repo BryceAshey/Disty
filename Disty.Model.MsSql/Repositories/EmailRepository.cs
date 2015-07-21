@@ -11,7 +11,7 @@ using Disty.Common.Data.Repositories;
 using Disty.Common.Log.Exceptions;
 using log4net;
 
-namespace Disty.Model.MySql.Repositories
+namespace Disty.Model.MsSql.Repositories
 {
     public class EmailRepository : RepositoryBase<EmailAddress, Email>, IEmailRepository
     {
@@ -32,7 +32,7 @@ namespace Disty.Model.MySql.Repositories
 
         public virtual async Task<EmailAddress> GetAsync(int id)
         {
-            using (var db = new DistyModelContainer())
+            using (var db = new DistyEntities())
             {
                 return await Task.FromResult<EmailAddress>(
                         Mapper.Map<Email, EmailAddress>(db.Set<Email>()
@@ -43,7 +43,7 @@ namespace Disty.Model.MySql.Repositories
 
         public virtual async Task<IEnumerable<EmailAddress>> GetByListAsync(int listId)
         {
-            using (var db = new DistyModelContainer())
+            using (var db = new DistyEntities())
             {
                 return
                     await
@@ -64,7 +64,7 @@ namespace Disty.Model.MySql.Repositories
                 if(item == null)
                     throw new ArgumentNullException("item");
 
-                using (var db = new DistyModelContainer())
+                using (var db = new DistyEntities())
                 {
                     var dbItem = Mapper.Map<EmailAddress, Email>(item);
                     if (item.Id == 0)

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1556E0C3-2A22-4DD3-AB86-50B612557453}</ProjectGuid>
+    <ProjectGuid>{BE41106D-9352-4B1F-9C93-87A21FE37401}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Disty.Model.MySql</RootNamespace>
-    <AssemblyName>Disty.Model.MySql</AssemblyName>
+    <RootNamespace>Disty.Model.MsSql</RootNamespace>
+    <AssemblyName>Disty.Model.MsSql</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -40,23 +42,15 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.Entity.6.9.6\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -70,41 +64,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperExtensions.cs" />
     <Compile Include="Dept.cs">
       <DependentUpon>DistyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DistyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DistyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DistyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DistyModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Email.cs">
       <DependentUpon>DistyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MySqlMapProfile.cs" />
-    <Compile Include="Repositories\DistributionDeptRepository.cs" />
-    <Compile Include="Repositories\DistributionListRepository.cs" />
-    <Compile Include="DistyModel.Context.cs">
-      <DependentUpon>DistyModel.Context.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="DistyModel.cs">
-      <DependentUpon>DistyModel.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="DistyModel.Designer.cs">
-      <DependentUpon>DistyModel.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Repositories\EmailRepository.cs" />
     <Compile Include="IocRegistrations.cs" />
     <Compile Include="List.cs">
       <DependentUpon>DistyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MsSqlMapProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DistributionDeptRepository.cs" />
+    <Compile Include="Repositories\DistributionListRepository.cs" />
+    <Compile Include="Repositories\EmailRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="App.config" />
     <EntityDeploy Include="DistyModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DistyModel.Designer.cs</LastGenOutput>
@@ -113,22 +106,6 @@
       <DependentUpon>DistyModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DistyModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DistyModel.edmx</DependentUpon>
-      <LastGenOutput>DistyModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DistyModel.edmx.sql" />
-    <Content Include="DistyModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DistyModel.edmx</DependentUpon>
-      <LastGenOutput>DistyModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Disty.Common.Contract\Disty.Common.Contract.csproj">
@@ -151,6 +128,21 @@
       <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
       <Name>Disty.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DistyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DistyModel.edmx</DependentUpon>
+      <LastGenOutput>DistyModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DistyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DistyModel.edmx</DependentUpon>
+      <LastGenOutput>DistyModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />

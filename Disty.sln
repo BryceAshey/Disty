@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disty.Outlook.2013.AddIn", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disty.Service.Client", "Disty.Service.Client\Disty.Service.Client.csproj", "{613FC1FF-55B7-4614-9794-0A92D7B85069}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Disty.Model.MsSql", "Disty.Model.MsSql\Disty.Model.MsSql.csproj", "{BE41106D-9352-4B1F-9C93-87A21FE37401}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{613FC1FF-55B7-4614-9794-0A92D7B85069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{613FC1FF-55B7-4614-9794-0A92D7B85069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{613FC1FF-55B7-4614-9794-0A92D7B85069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE41106D-9352-4B1F-9C93-87A21FE37401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE41106D-9352-4B1F-9C93-87A21FE37401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE41106D-9352-4B1F-9C93-87A21FE37401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE41106D-9352-4B1F-9C93-87A21FE37401}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +143,6 @@ Global
 		{9CD869DD-526D-4A04-9C4B-1B1AEB823DB5} = {7DAE1E98-7BDF-4D7F-B84F-4AC72DDF05D5}
 		{3B548A67-412B-429C-9D4B-2A832FF8B5DE} = {7DAE1E98-7BDF-4D7F-B84F-4AC72DDF05D5}
 		{613FC1FF-55B7-4614-9794-0A92D7B85069} = {15A56967-E640-4FF3-8528-6F023BA435A7}
+		{BE41106D-9352-4B1F-9C93-87A21FE37401} = {853619BA-CA32-440C-AED6-D0D18D5DA4CF}
 	EndGlobalSection
 EndGlobal

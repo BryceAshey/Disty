@@ -9,7 +9,7 @@ using Disty.Common.Data.Repositories;
 using Disty.Common.Log.Exceptions;
 using log4net;
 
-namespace Disty.Model.MySql.Repositories
+namespace Disty.Model.MsSql.Repositories
 {
     public class DistributionDeptRepository : RepositoryBase<DistributionDept, Dept>, IDistributionDeptRepository
     {
@@ -32,7 +32,7 @@ namespace Disty.Model.MySql.Repositories
                 if (item == null)
                     throw new ArgumentNullException("item");
 
-                using (var db = new DistyModelContainer())
+                using (var db = new DistyEntities())
                 {
                     var dbItem = Mapper.Map<DistributionDept, Dept>(item);
                     if (item.Id == 0)

@@ -10,7 +10,7 @@ using Disty.Common.Contract;
 using Disty.Common.Data;
 using log4net;
 
-namespace Disty.Model.MySql.Repositories
+namespace Disty.Model.MsSql.Repositories
 {
     public abstract class RepositoryBase<TEntity, TSetEntity> : IRepository<TEntity>
         where TEntity : DistyEntity
@@ -25,12 +25,12 @@ namespace Disty.Model.MySql.Repositories
 
         public virtual async void DeleteAsync(int id)
         {
-            using (var db = new DistyModelContainer())
+            using (var db = new DistyEntities())
             {
                 var obj = await db.Set<TSetEntity>().FindAsync(id);
                 if (obj == null)
                     return;
-
+                
                 db.Set<TSetEntity>().Remove(obj);
                 await db.SaveChangesAsync();
             }
@@ -38,7 +38,7 @@ namespace Disty.Model.MySql.Repositories
 
         public virtual async Task<IEnumerable<TEntity>> GetAsync()
         {
-            using (var db = new DistyModelContainer())
+            using (var db = new DistyEntities())
             {
                 return
                     await
@@ -51,7 +51,7 @@ namespace Disty.Model.MySql.Repositories
 
         public virtual async Task<TEntity> GetAsync(int id)
         {
-            using (var db = new DistyModelContainer())
+            using (var db = new DistyEntities())
             {
                 return await Task.FromResult(
                     Mapper.Map<TSetEntity, TEntity>(db.Set<TSetEntity>()
@@ -72,7 +72,7 @@ namespace Disty.Model.MySql.Repositories
 
         public virtual async Task<IEnumerable<TEntity>> GetAsync(string includes)
         {
-            using (var db = new DistyModelContainer())
+            using (var db = new DistyEntities())
             {
                 return
                     await

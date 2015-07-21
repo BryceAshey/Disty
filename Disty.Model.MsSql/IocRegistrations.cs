@@ -1,9 +1,10 @@
 ﻿using Autofac;
 using Disty.Common.Data.Repositories;
 using Disty.Common.IOC;
-using Disty.Model.MySql.Repositories;
+using Disty.Model.MsSql.Repositories;
+using Disty.Model.MsSql.Repositories;
 
-namespace Disty.Model.MySql
+namespace Disty.Model.MsSql
 {
     public class IocRegistrations : IRegister
     {

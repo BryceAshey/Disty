@@ -9,14 +9,13 @@ using Disty.Common.Data.Repositories;
 using Disty.Common.Log.Exceptions;
 using log4net;
 
-namespace Disty.Model.MySql.Repositories
+namespace Disty.Model.MsSql.Repositories
 {
     public class DistributionListRepository : RepositoryBase<DistributionList, List>, IDistributionListRepository
     {
         private readonly IDistributionDeptRepository _deptRepository;
 
-        public DistributionListRepository(ILog log, IDistributionDeptRepository deptRepository)
-            : base(log)
+        public DistributionListRepository(ILog log, IDistributionDeptRepository deptRepository) : base(log)
         {
             _deptRepository = deptRepository;
         }
@@ -30,9 +29,7 @@ namespace Disty.Model.MySql.Repositories
         {
             try
             {
-                // TODO Rework this to pull it up into the service.  
-                // TODO Also need to validate that the user has rights to save to this dept.
-                using (var db = new DistyModelContainer())
+                using (var db = new DistyEntities())
                 {
                     var dept = db.Depts.Find(item.DeptId);
                     if (dept == null)

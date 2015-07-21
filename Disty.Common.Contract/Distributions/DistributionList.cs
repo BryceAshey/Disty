@@ -21,6 +21,8 @@ namespace Disty.Common.Contract.Distributions
         [DataMember]
         public string Dept { get; set; }
         [DataMember]
+        public int DeptId { get; set; }
+        [DataMember]
         public IEnumerable<EmailAddress> Emails { get; set; }
     }
 }
