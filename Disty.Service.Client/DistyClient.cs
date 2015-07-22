@@ -32,7 +32,7 @@ namespace Disty.Service.Client
 
         public async Task<T> FindAsync(string path)
         {
-            return await base.GetAsync(path).ContinueWith<T>(t =>
+            return await base.GetAsync(string.Concat(BaseAddress, "/", path)).ContinueWith<T>(t =>
             {
                 var response = t.Result;
                 if(response.IsSuccessStatusCode)
@@ -50,7 +50,7 @@ namespace Disty.Service.Client
 
         public async Task<IEnumerable<T>> GetAsync(string path)
         {
-            return await base.GetAsync(path).ContinueWith<IEnumerable<T>>(t =>
+            return await base.GetAsync(string.Concat(BaseAddress, "/", path)).ContinueWith<IEnumerable<T>>(t =>
             {
                 var response = t.Result;
                 if (response.IsSuccessStatusCode)
