@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/dashboard.css">
-    <link rel="stylesheet" href="/assets/css/ngDialog.min.css">
-    <link rel="stylesheet" href="/assets/css/ngDialog-theme-default.min.css">
-    <script src="/assets/js/lib/script.js"></script>
-    <script src="/assets/js/disty.config.js"></script>
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/main.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/dashboard.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/ngDialog.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/ngDialog-theme-default.min.css")">
+    <script src="@Url.Content("~/assets/js/lib/script.js")"></script>
+    <script src="@Url.Content("~/assets/js/disty.config.js")"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -24,9 +24,9 @@
     <![endif]-->
 
     <script>
-    $script.path('/assets/js/');
+        $script.path('@Url.Content("~/assets/js/")');
     var modules = [];
-    distyConfig(@HttpContext.Current.IsDebuggingEnabled.ToString().ToLower(), '@string.Concat("http://", HttpContext.Current.Request.Url.DnsSafeHost, ":", HttpContext.Current.Request.Url.Port)');
+    distyConfig(@HttpContext.Current.IsDebuggingEnabled.ToString().ToLower(), '@string.Concat(HttpContext.Current.Request.Url.Scheme, "://", HttpContext.Current.Request.Url.DnsSafeHost, ":", HttpContext.Current.Request.Url.Port, Url.Content("~/"))');
     </script>
 
 </head>

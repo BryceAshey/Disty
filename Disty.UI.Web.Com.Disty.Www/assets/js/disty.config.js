@@ -25,12 +25,12 @@
             $stateProvider
                 .state('home', {
                     url: '/',
-                    templateUrl: '/assets/html/home/index.html',
+                    templateUrl: window.distyConfig.baseUrl + '/assets/html/home/index.html',
                     controller: 'home.controller'                    
                 }).state('home.list', {
                     parent: 'home',
                     url: 'list/:listId',
-                    templateUrl: '/assets/html/partials/lists/listGrid.html'
+                    templateUrl: window.distyConfig.baseUrl + '/assets/html/partials/lists/listGrid.html'
                 });
         }
     };
@@ -42,11 +42,11 @@
                 $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.js', function () {
                     $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-resource.js', function () {
                         $script([
-                            '/assets/js/lib/ng-dialog/ngDialog.min.js',
-                            '/assets/js/lib/ui-router/angular-ui-router.min.js',
-                            '/assets/js/lib/underscore/underscore-1.7.0.js',
-                            '/assets/js/lib/docs.min.js',
-                            '/assets/js/ie10-viewport-bug-workaround.js',
+                            'lib/ng-dialog/ngDialog.min',
+                            'lib/ui-router/angular-ui-router.min',
+                            'lib/underscore/underscore-1.7.0',
+                            'lib/docs.min',
+                            'ie10-viewport-bug-workaround',
                         ], 'distyLibs');
                     });
                 });

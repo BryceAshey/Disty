@@ -12,7 +12,7 @@
 
 		    return {
 		        restrict: 'EA',
-		        templateUrl: '/assets/html/partials/email/addEmail.html',
+		        templateUrl: window.distyConfig.baseUrl + '/assets/html/partials/email/addEmail.html',
 		        scope: {
 		            ngModel: '='
 		        },

@@ -12,7 +12,7 @@
 	        
 	        return {
 	            restrict: 'EA',
-	            templateUrl: '/assets/html/partials/lists/list.html',
+	            templateUrl: window.distyConfig.baseUrl + '/assets/html/partials/lists/list.html',
 	            scope: {
 	                ngModel: '='
 	            },
