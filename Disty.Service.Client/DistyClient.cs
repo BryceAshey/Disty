@@ -22,12 +22,8 @@ namespace Disty.Service.Client
     {
         public DistyClient()
             : base(new HttpClientHandler() { PreAuthenticate = true, UseDefaultCredentials = true })
-        {
-            var baseUri = ConfigurationManager.AppSettings["baseUri"] as string;
-            if (string.IsNullOrEmpty(baseUri))
-                throw new InvalidOperationException(string.Format("Cannot determine baseUri from AppSettings in the configuration file.  Looking in:  {0}", AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
-
-            BaseAddress = new Uri(baseUri);
+        {            
+            BaseAddress = new Uri(DistyUrl());
         }
 
         public async Task<T> FindAsync(string path)
@@ -64,6 +60,15 @@ namespace Disty.Service.Client
 
                 return new List<T>() as IEnumerable<T>;
             });
+        }
+
+        public static string DistyUrl()
+        {
+            var baseUri = ConfigurationManager.AppSettings["baseUri"] as string;
+            if (string.IsNullOrEmpty(baseUri))
+                throw new InvalidOperationException(string.Format("Cannot determine baseUri from AppSettings in the configuration file.  Looking in:  {0}", AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
+
+            return baseUri;
         }
 
     }

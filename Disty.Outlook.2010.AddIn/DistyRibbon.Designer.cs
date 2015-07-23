@@ -37,6 +37,7 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.cbLists = this.Factory.CreateRibbonComboBox();
+            this.butManage = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             // group1
             // 
             this.group1.Items.Add(this.cbLists);
+            this.group1.Items.Add(this.butManage);
             this.group1.Label = "Distribution List";
             this.group1.Name = "group1";
             this.group1.Position = this.Factory.RibbonPosition.BeforeOfficeId("GroupClipboard");
@@ -61,6 +63,12 @@
             this.cbLists.Name = "cbLists";
             this.cbLists.Text = null;
             this.cbLists.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.cbLists_TextChanged);
+            // 
+            // butManage
+            // 
+            this.butManage.Label = "Manage Lists";
+            this.butManage.Name = "butManage";
+            this.butManage.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.butManage_Click);
             // 
             // DistyRibbon
             // 
@@ -81,6 +89,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonComboBox cbLists;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton butManage;
     }
 
     partial class ThisRibbonCollection

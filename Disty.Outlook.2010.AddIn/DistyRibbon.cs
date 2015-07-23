@@ -79,5 +79,17 @@ namespace Disty.Outlook._2010.AddIn
             }
 
         }
+
+        private void butManage_Click(object sender, RibbonControlEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(Disty.Service.Client.DistyClient<Disty.Common.Contract.Distributions.DistributionDept>.DistyUrl());
+            }
+            catch (Exception ex)
+            {
+                var exception = ex;
+            }
+        }
     }
 }
