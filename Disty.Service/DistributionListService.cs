@@ -27,7 +27,8 @@ namespace Disty.Service
 
         public async Task<IEnumerable<DistributionList>> GetAsync()
         {
-            return await _repository.GetAsync();
+            var list = await _repository.GetAsync();
+            return list;
         }
 
         public async Task<DistributionList> GetAsync(int id)
