@@ -170,6 +170,9 @@
     <Content Include="assets\js\modules\lists\directives\disty.lists.directives.js" />
     <Content Include="assets\js\modules\email\controllers\disty.email.controller.js" />
     <Content Include="assets\js\modules\email\directives\disty.email.directives.js" />
+    <Content Include="assets\content\Disty.Outlook.2010.AddIn.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\Disk.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

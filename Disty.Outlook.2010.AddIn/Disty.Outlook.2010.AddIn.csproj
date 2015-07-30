@@ -213,6 +213,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
+    <None Include="Disty.Outlook.2010.AddIn_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -267,11 +268,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>Disty.Outlook.2010.AddIn_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>60806C55F19C77DCA7DF8ED71E333D5FC62FBD27</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>350FCBFA158435A37BC2E82043FCF3247A40F89E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -283,7 +283,7 @@
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Outlook" HostPackage="{20A848B8-E01F-4801-962E-25DB0FF57389}" OfficeVersion="14.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\14.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{A58A78EB-1C92-4DDD-80CF-E8BD872ABFC4}" />
         <Host Name="Outlook" GeneratedCodeNamespace="Disty.Outlook._2010.AddIn" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="DistyAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="DistyAddIn.Designer.xml" GeneratedCode="DistyAddIn.Designer.cs" PublishedHash="3F78191A3150E58F8B575583DEC86C740AFFD2DA" />
+          <HostItem Name="ThisAddIn" Code="DistyAddIn.cs" CanonicalName="AddIn" PublishedHash="3F78191A3150E58F8B575583DEC86C740AFFD2DA" CanActivate="false" IconIndex="1" Blueprint="DistyAddIn.Designer.xml" GeneratedCode="DistyAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>
