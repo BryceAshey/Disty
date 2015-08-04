@@ -120,8 +120,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ListEmail">
-          <End Role="Lists" Type="Self.List" Multiplicity="1" />
-          <End Role="Emails" Type="Self.Email" Multiplicity="*" />
+          <End Role="Lists" Type="Self.List" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Emails" Type="Self.Email" Multiplicity="*" >
+          </End>
           <ReferentialConstraint>
             <Principal Role="Lists">
               <PropertyRef Name="Id" />
