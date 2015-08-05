@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+    <ribbon>
+        <tabs>
+            <tab idMso="TabAppointment" >
+                <group id="group2" insertBeforeMso="GroupActions" label="Distribution List" >
+                    <dropDown id="cbCalendarLists" getItemCount="OnGetItemCount" getItemLabel="OnGetItemLabel" onAction="cbCalendarLists_TextChanged" label="List" showImage="false" />
+                    <button id="button1" onAction="button1_Click" label="Manage Lists" showImage="false" />
+                </group>
+            </tab>
+        </tabs>
+    </ribbon>
+</customUI>
