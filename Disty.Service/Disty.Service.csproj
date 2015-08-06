@@ -79,10 +79,6 @@
       <Project>{94883e2a-a3d2-4ea0-846f-4c3418ca3cc8}</Project>
       <Name>Disty.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Disty.Model.MySql\Disty.Model.MySql.csproj">
-      <Project>{1556E0C3-2A22-4DD3-AB86-50B612557453}</Project>
-      <Name>Disty.Model.MySql</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Disty.Service.Interfaces\Disty.Service.Interfaces.csproj">
       <Project>{79989dd7-da02-4eb0-84ba-4e0eea84de10}</Project>
       <Name>Disty.Service.Interfaces</Name>
