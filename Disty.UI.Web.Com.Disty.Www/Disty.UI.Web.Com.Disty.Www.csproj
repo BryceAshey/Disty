@@ -126,7 +126,6 @@
     <Content Include="assets\css\ngDialog.min.css" />
     <Content Include="assets\html\home\index.html" />
     <Content Include="assets\html\partials\email\addEmail.html" />
-    <Content Include="assets\html\partials\lists\listModal.html" />
     <Content Include="assets\html\partials\lists\list.html" />
     <Content Include="assets\html\partials\lists\listGrid.html" />
     <Content Include="assets\js\disty.config.js" />
@@ -146,9 +145,14 @@
     <Content Include="assets\js\modules\lists\controllers\disty.lists.controller.js" />
     <Content Include="assets\js\modules\lists\lists.modules.js" />
     <Content Include="assets\js\modules\lists\services\disty.lists.services.js" />
+    <Content Include="Content\ngDialog-theme-default.css" />
+    <Content Include="Content\ngDialog.css" />
+    <Content Include="Content\ngDialog.min.css" />
     <Content Include="Global.asax" />
     <Content Include="assets\js\lib\docs.min.js" />
     <Content Include="assets\js\ie10-viewport-bug-workaround.js" />
+    <Content Include="Scripts\ngDialog.js" />
+    <Content Include="Scripts\ngDialog.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

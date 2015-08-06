@@ -3,12 +3,13 @@
 	'use strict';
 
 	var module = ng.module('disty.lists.directives', [
-		'disty.lists.service'
+        'ngDialog',
+        'disty.lists.service'
 	]);
 
 	(function ($ng, $module) {
 
-	    function Directive($stateParams, $state, $distributionListService) {
+	    function Directive($stateParams, $state, $ngDialog, $distributionListService) {
 	        
 	        return {
 	            restrict: 'EA',
@@ -17,12 +18,16 @@
 	                ngModel: '='
 	            },
                 link: function(scope) {
-                    scope.deleteList = function (id, $event) {
-                        
-                        $event.preventDefault();                           
+                    scope.deleteList = function (id, $event) {                       
+                        //$('#confirmDelete').modal('show');
+                        console.log("Before");
+                        console.log($ngDialog);
+                        $ngDialog.open({
+                            template: 'firstDialogId',
+                        });
+                        console.log("After");
+                        $event.preventDefault();
                         $distributionListService.del(id).then(function () {
-                            window.alert("Blah");
-                            $('#confirmDelete').modal('show');
                             scope.ngModel = _.without(scope.ngModel, _.findWhere(scope.ngModel, { id: id }));
                             console.log($stateParams);
                             if ($stateParams.listId == id) {
