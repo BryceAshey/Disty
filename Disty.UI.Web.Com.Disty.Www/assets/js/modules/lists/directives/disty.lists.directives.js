@@ -18,8 +18,11 @@
 	            },
                 link: function(scope) {
                     scope.deleteList = function (id, $event) {
-                        $event.preventDefault();
+                        
+                        $event.preventDefault();                           
                         $distributionListService.del(id).then(function () {
+                            window.alert("Blah");
+                            $('#confirmDelete').modal('show');
                             scope.ngModel = _.without(scope.ngModel, _.findWhere(scope.ngModel, { id: id }));
                             console.log($stateParams);
                             if ($stateParams.listId == id) {
