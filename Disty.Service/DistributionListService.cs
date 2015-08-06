@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Disty.Common.Contract.Distributions;
 using Disty.Common.Data.Repositories;
-using Disty.Model.MySql.Repositories;
 using Disty.Service.Interfaces;
 using log4net;
 
