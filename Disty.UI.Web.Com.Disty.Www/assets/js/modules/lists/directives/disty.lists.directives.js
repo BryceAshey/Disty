@@ -3,7 +3,6 @@
 	'use strict';
 
 	var module = ng.module('disty.lists.directives', [
-        'ngDialog',
         'disty.lists.service'
 	]);
 
@@ -19,10 +18,9 @@
 	            },
                 link: function(scope) {
                     scope.deleteList = function (id, $event) {                       
-                        //$('#confirmDelete').modal('show');
                         console.log("Before");
                         $ngDialog.open({
-                            template: 'firstDialogId',
+                            template: 'deleteDialog',
                         });
                         console.log("After");
                         $event.preventDefault();
