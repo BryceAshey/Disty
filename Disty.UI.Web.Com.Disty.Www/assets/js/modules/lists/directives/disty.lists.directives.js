@@ -21,7 +21,6 @@
                     scope.deleteList = function (id, $event) {                       
                         //$('#confirmDelete').modal('show');
                         console.log("Before");
-                        console.log($ngDialog);
                         $ngDialog.open({
                             template: 'firstDialogId',
                         });
@@ -41,7 +40,7 @@
 	        };
 		}
 
-	    $module.directive('distributionListsUl', ['$stateParams', '$state', '$distributionListService', Directive]);
+	    $module.directive('distributionListsUl', ['$stateParams', '$state', 'ngDialog', '$distributionListService', Directive]);
 
 	})(ng, module);
 	
