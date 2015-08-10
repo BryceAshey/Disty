@@ -5,10 +5,10 @@
 <!--alert dialog on delete press-->
 <script type="text/ng-template" id="deleteDialog">
     <div class="ngdialog-message">
-        <h4>Delete this list forever</h4>
+        <h4>Delete this list forever?</h4>
     </div>
     <label class="checkbox-inline"> 
-        <input type="checkbox" name="stopShowing" ng-model="string"> Don't show this again
+        <input type="checkbox" id="hideRadio" name="stopShowing" ng-model="string"> Don't show this again
     </label>
     <div class="ngdialog-buttons">
         <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">Cancel</button>

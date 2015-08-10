@@ -16,23 +16,22 @@
 	            scope: {
 	                ngModel: '='
 	            },
-                link: function(scope) {
-                    scope.deleteList = function (id, $event) {                       
-                        console.log("Before");
-                        $ngDialog.open({
-                            template: 'deleteDialog',
-                        });
-                        console.log("After");
-                        $event.preventDefault();
-                        $distributionListService.del(id).then(function () {
-                            scope.ngModel = _.without(scope.ngModel, _.findWhere(scope.ngModel, { id: id }));
-                            console.log($stateParams);
-                            if ($stateParams.listId == id) {
-                                $state.go('home');
-                            }
-                        }, function (error) {
-                            console.log('has failed... ' + error);
-                        });
+	            link: function (scope) {
+	                scope.deleteList = function (id, $event) {
+	                    $ngDialog.openConfirm({
+	                        template: 'deleteDialog',
+	                    }).then(function (value) {
+	                        $event.preventDefault();
+	                        $distributionListService.del(id).then(function () {
+	                            scope.ngModel = _.without(scope.ngModel, _.findWhere(scope.ngModel, { id: id }));
+	                            console.log($stateParams);
+	                            if ($stateParams.listId == id) {
+	                                $state.go('home');
+	                            }
+	                        }, function (error) {
+	                            console.log('has failed... ' + error);
+	                        });
+	                    });
                     }
                 }
 	        };
