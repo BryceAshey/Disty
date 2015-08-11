@@ -8,10 +8,10 @@
         <h4>Delete this list forever?</h4>
     </div>
     <label class="checkbox-inline"> 
-        <input type="checkbox" id="hideRadio" name="stopShowing" ng-model="string"> Don't show this again
+        <input type="checkbox" id="hideRadio" name="stopShowing" ng-model="rememberMe"> Don't show this again
     </label>
     <div class="ngdialog-buttons">
-        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog(0)">Cancel</button>
-        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(1)">Yes</button>
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm()">Yes</button>
     </div>
 </script>

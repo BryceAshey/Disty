@@ -20,6 +20,8 @@
 	                scope.deleteList = function (id, $event) {
 	                    $ngDialog.openConfirm({
 	                        template: 'deleteDialog',
+	                        closeByEscape: true,
+                            closeByDocument: false
 	                    }).then(function (value) {
 	                        $event.preventDefault();
 	                        $distributionListService.del(id).then(function () {
@@ -31,7 +33,10 @@
 	                        }, function (error) {
 	                            console.log('has failed... ' + error);
 	                        });
-
+	                        if (document.getElementById('hideRadio').checked) {
+	                            alert("checked");
+	                        }
+	                    }, function (value) {
 	                        if (document.getElementById('hideRadio').checked) {
 	                            alert("checked");
 	                        }
