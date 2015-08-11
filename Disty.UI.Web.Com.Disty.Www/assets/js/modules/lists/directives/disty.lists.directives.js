@@ -31,6 +31,10 @@
 	                        }, function (error) {
 	                            console.log('has failed... ' + error);
 	                        });
+
+	                        if (document.getElementById('hideRadio').checked) {
+	                            alert("checked");
+	                        }
 	                    });
                     }
                 }
