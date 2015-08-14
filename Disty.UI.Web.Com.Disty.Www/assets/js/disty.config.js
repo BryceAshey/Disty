@@ -43,6 +43,7 @@
                     $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-resource.js', function () {
                         $script([
                             'lib/ng-dialog/ngDialog.min',
+                            'lib/ng-cookies/angular-cookies.min',
                             'lib/ui-router/angular-ui-router.min',
                             'lib/underscore/underscore-1.7.0',
                             'lib/docs.min',

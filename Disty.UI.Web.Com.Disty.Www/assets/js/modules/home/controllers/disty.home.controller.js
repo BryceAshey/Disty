@@ -42,8 +42,7 @@
 
         };
 
-        module.controller('home.controller',
-            ['$scope', 'ngDialog', '$distributionListService', Controller]);
+        module.controller('home.controller', ['$scope', 'ngDialog', '$distributionListService', Controller]);
 
     })();
 

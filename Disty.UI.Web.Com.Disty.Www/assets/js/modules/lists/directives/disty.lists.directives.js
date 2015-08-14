@@ -3,12 +3,13 @@
 	'use strict';
 
 	var module = ng.module('disty.lists.directives', [
+        '$cookies',
         'disty.lists.service'
 	]);
 
 	(function ($ng, $module) {
 
-	    function Directive($stateParams, $state, $ngDialog, $distributionListService) {
+	    function Directive($stateParams, $state, $ngCookies, $ngDialog, $distributionListService) {
 	        
 	        return {
 	            restrict: 'EA',
@@ -33,11 +34,11 @@
 	                        }, function (error) {
 	                            console.log('has failed... ' + error);
 	                        });
-	                        if (document.getElementById('hideRadio').checked) {
+	                        if (document.getElementById('hideBox').checked) {
 	                            alert("checked");
 	                        }
 	                    }, function (value) {
-	                        if (document.getElementById('hideRadio').checked) {
+	                        if (document.getElementById('hideBox').checked) {
 	                            alert("checked");
 	                        }
 	                    });
@@ -46,7 +47,7 @@
 	        };
 		}
 
-	    $module.directive('distributionListsUl', ['$stateParams', '$state', 'ngDialog', '$distributionListService', Directive]);
+	    $module.directive('distributionListsUl', ['$stateParams', '$state', 'ngCookies', 'ngDialog', '$distributionListService', Directive]);
 
 	})(ng, module);
 	
