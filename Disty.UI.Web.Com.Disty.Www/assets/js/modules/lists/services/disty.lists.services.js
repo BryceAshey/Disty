@@ -3,7 +3,6 @@
     'use strict';
 
     var module = ng.module('disty.lists.service', [
-        'ngCookies',
         'disty.common.api.services'
     ]);
 

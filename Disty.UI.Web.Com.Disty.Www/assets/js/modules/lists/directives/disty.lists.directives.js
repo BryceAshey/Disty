@@ -3,12 +3,13 @@
 	'use strict';
 
 	var module = ng.module('disty.lists.directives', [
+        'ngCookies',
         'disty.lists.service'
 	]);
 
 	(function ($ng, $module) {
 
-	    function Directive($stateParams, $state, $ngDialog, $distributionListService) {
+	    function Directive($stateParams, $state, $ngDialog, $distributionListService, $ngCookies) {
 	        
 	        return {
 	            restrict: 'EA',
@@ -18,6 +19,9 @@
 	            },
 	            link: function (scope) {
 	                scope.deleteList = function (id, $event) {
+	                    var favoriteCookie = $ngCookies.myFavorite;
+	                    $ngCookies.myFavorite = 'oatmeal';
+	                    console.log($ngCookies.myFavorite);
 	                    $ngDialog.openConfirm({
 	                        template: 'deleteDialog',
 	                        closeByEscape: true,
@@ -47,7 +51,7 @@
 		}
 
 	    $module.directive('distributionListsUl',
-        ['$stateParams', '$state', 'ngDialog', '$distributionListService', Directive]);
+        ['$stateParams', '$state', 'ngDialog', '$distributionListService', '$cookies', Directive]);
 
 	})(ng, module);
 	
