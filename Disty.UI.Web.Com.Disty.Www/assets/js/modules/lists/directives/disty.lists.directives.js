@@ -3,13 +3,12 @@
 	'use strict';
 
 	var module = ng.module('disty.lists.directives', [
-        '$cookies',
         'disty.lists.service'
 	]);
 
 	(function ($ng, $module) {
 
-	    function Directive($stateParams, $state, $ngCookies, $ngDialog, $distributionListService) {
+	    function Directive($stateParams, $state, $ngDialog, $distributionListService) {
 	        
 	        return {
 	            restrict: 'EA',
@@ -47,7 +46,8 @@
 	        };
 		}
 
-	    $module.directive('distributionListsUl', ['$stateParams', '$state', 'ngCookies', 'ngDialog', '$distributionListService', Directive]);
+	    $module.directive('distributionListsUl',
+        ['$stateParams', '$state', 'ngDialog', '$distributionListService', Directive]);
 
 	})(ng, module);
 	

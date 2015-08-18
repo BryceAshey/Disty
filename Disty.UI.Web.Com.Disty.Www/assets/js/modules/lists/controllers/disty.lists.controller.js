@@ -5,7 +5,7 @@
     var module = ng.module('disty.lists.controller', [
         'disty.lists.service',
         'disty.email.controller',
-        'disty.email.service'
+        'disty.email.service',
     ]);
 
     //list.controller 
