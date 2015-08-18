@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58F18582-7D91-4143-892F-68928564DD14}</ProjectGuid>
+    <ProjectGuid>{BA1C84AA-F69B-430E-BA07-C74263B81A58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Disty.Common.Log.Test.Unit</RootNamespace>
-    <AssemblyName>Disty.Common.Log.Test.Unit</AssemblyName>
+    <RootNamespace>Disty.Service.Endpoint.Http.Test.Unit</RootNamespace>
+    <AssemblyName>Disty.Service.Endpoint.Http.Test.Unit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -66,14 +66,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="LoggedExceptionTest.cs" />
+    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Disty.Common.Log\Disty.Common.Log.csproj">
-      <Project>{04ca92e9-74b6-476b-8538-cffac2c2f3f1}</Project>
-      <Name>Disty.Common.Log</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
