@@ -28,16 +28,16 @@
 	                }
 
 	                function performDelete(id, $event) {
-	                        $event.preventDefault();
-	                        $distributionListService.del(id).then(function () {
-	                            scope.ngModel = _.without(scope.ngModel, _.findWhere(scope.ngModel, { id: id }));
-	                            console.log($stateParams);
-	                            if ($stateParams.listId == id) {
-	                                $state.go('home');
-	                            }
-	                        }, function (error) {
-	                            console.log('has failed... ' + error);
-	                        });
+	                    $event.preventDefault();
+	                    $distributionListService.del(id).then(function () {
+	                        scope.ngModel = _.without(scope.ngModel, _.findWhere(scope.ngModel, { id: id }));
+	                        console.log($stateParams);
+	                        if ($stateParams.listId == id) {
+	                            $state.go('home');
+	                        }
+	                    }, function (error) {
+	                        console.log('has failed... ' + error);
+	                    });
 	                }
 
 	                function deleteDialog(id, $event, callback) {
@@ -55,7 +55,6 @@
 	                        if (document.getElementById('hideBox').checked) {
 	                            $ngCookies.rememberMe = 'true';
 	                        }
-
 	                    });
 	                }
                 }
