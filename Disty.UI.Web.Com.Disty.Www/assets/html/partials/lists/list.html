@@ -1,3 +1,17 @@
 ﻿    <li scope="col" ng-repeat="list in ngModel">
         <a ng-href="#/list/{{list.id}}">{{list.name}} <i class="fa fa-minus pull-right mouse-pointer red-text" ng-click="deleteList(list.id, $event)"></i></a>
     </li>
+
+<!--alert dialog on delete press-->
+<script type="text/ng-template" id="deleteDialog">
+    <div class="ngdialog-message">
+        <h4>Delete this list forever?</h4>
+    </div>
+    <label class="checkbox-inline"> 
+        <input type="checkbox" id="hideBox" name="stopShowing" ng-model="rememberMe"> Don't show this again
+    </label>
+    <div class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog()">Cancel</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="confirm()">Yes</button>
+    </div>
+</script>

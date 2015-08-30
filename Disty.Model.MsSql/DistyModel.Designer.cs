@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\BASHEY\Documents\GitHub\Disty\Disty.Model.MsSql\DistyModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\lanh\VirtualBox VMs\Vagrant-v2\data\Disty\Disty.Model.MsSql\DistyModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

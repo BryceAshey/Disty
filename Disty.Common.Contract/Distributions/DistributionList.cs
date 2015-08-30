@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace Disty.Common.Contract.Distributions
 {
     [Serializable, DataContract]
-    public class DistributionList : DistyEntity, IComparable
+    public class DistributionList : DistyEntity
     {
         public DistributionList()
         {
@@ -24,16 +24,5 @@ namespace Disty.Common.Contract.Distributions
         public int DeptId { get; set; }
         [DataMember]
         public IEnumerable<EmailAddress> Emails { get; set; }
-
-        public int CompareTo(object obj)
-        {
-            if(obj == null)
-                throw new ArgumentNullException("obj");
-
-            if (this.GetType() != obj.GetType())
-                throw new InvalidOperationException("obj is not a matching type.");
-
-            return this.Name.CompareTo(((DistributionList)obj).Name);
-        }
     }
 }

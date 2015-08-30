@@ -35,7 +35,7 @@
     <PublishUrl>publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.6</ApplicationVersion>
+    <ApplicationVersion>1.0.0.5</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -190,12 +190,18 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="DistyRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DistyRibbon.Designer.cs">
+      <DependentUpon>DistyRibbon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Ribbon.cs">
-      <XmlRibbon>true</XmlRibbon>
-    </Compile>
+    <EmbeddedResource Include="DistyRibbon.resx">
+      <DependentUpon>DistyRibbon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -207,6 +213,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
+    <None Include="Disty.Outlook.2010.AddIn_1_TemporaryKey.pfx" />
     <None Include="Disty.Outlook.2010.AddIn_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -254,12 +261,6 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="NewMailMessageRibbon.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="AppointmentRibbon.xml" />
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -268,11 +269,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>Disty.Outlook.2010.AddIn_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4EF8779855C7E2CA997E1DEFAF9B29069A665A95</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FBF05DDF60C6B4783D49921731B0ED35D8E03D2B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

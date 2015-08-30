@@ -178,6 +178,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Disty.Outlook.2013.AddIn_1_TemporaryKey.pfx" />
+    <None Include="Disty.Outlook.2013.AddIn_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -207,10 +208,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Disty.Outlook.2013.AddIn_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Disty.Outlook.2013.AddIn_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E01FEE34C89CE45F0FAC77A834BC7DF420FF9C7F</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F78D69EF9B91371734EB3FE880E2FAEBBD80BACE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

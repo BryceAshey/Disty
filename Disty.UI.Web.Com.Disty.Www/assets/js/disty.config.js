@@ -41,13 +41,15 @@
             $script.get('//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', function () {
                 $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.js', function () {
                     $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-resource.js', function () {
-                        $script([
-                            'lib/ng-dialog/ngDialog.min',
-                            'lib/ui-router/angular-ui-router.min',
-                            'lib/underscore/underscore-1.7.0',
-                            'lib/docs.min',
-                            'ie10-viewport-bug-workaround',
-                        ], 'distyLibs');
+                        $script.get('//ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-cookies.min.js', function () {
+                            $script([
+                                'lib/ng-dialog/ngDialog.min',
+                                'lib/ui-router/angular-ui-router.min',
+                                'lib/underscore/underscore-1.7.0',
+                                'lib/docs.min',
+                                'ie10-viewport-bug-workaround',
+                            ], 'distyLibs');
+                        });
                     });
                 });
             });
